@@ -1,0 +1,215 @@
+﻿
+
+<div ng-init="loadCustomer()" style="height:540px; overflow-x: hidden; overflow-y: auto;">
+    <div>
+        <form role="form" class="form-horizontal sleek-forms" novalidate name="customerForm">
+            <div class="box-header with-border" style="border:none">
+                <h3 class="box-title" ng-hide="customer.ID!=undefined">New Customer</h3>
+                <h3 class="box-title" ng-show="customer.ID!=undefined">Edit Customer : {{customer.AC_DESC}}</h3>
+            </div>
+            <section>
+                <div class="container-fluid rwa">
+
+                    <div class="col-lg-12 rwa box-shadow">
+                        <div class=" rwa">
+                            <div class="col-lg-6 rwa">
+                                <div class="rwa">
+                                        
+                                    <div class="form-group" ng-class="{ 'has-error' : customerForm.AcCd.$invalid && (customerForm.AcCd.$dirty || submitted)}">
+                                        <label class="control-label   col-sm-2 text-str" for="AcCd">A/c Code</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="customer.AC_CD" name="AcCd" placeholder="Account Code" ng-required="true" ng-disabled="customer.ID!=undefined" uppercase-only />
+                                        </div>
+                                        <div class="col-sm-1 mandetary "></div>
+                                        <div ng-show="customerForm.AcCd.$error.required && (customerForm.AcCd.$dirty || submitted)" class="help-block">Account code is required.</div>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error' : customerForm.Name.$invalid && (customerForm.Name.$dirty || submitted)}">
+                                        <label class="control-label   col-sm-2 text-str" for="Name">Name</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="txt" ng-model="customer.AC_DESC" name="Name" placeholder="Customer Name" ng-required="true" uppercase-only />
+                                        </div>
+                                        <div class="col-sm-1 mandetary "></div>
+                                        <div style=" margin-top: 36px; margin-left: 13px;" ng-show="customerForm.Name.$error.required && (customerForm.Name.$dirty || submitted)" class="help-block">Name is required.</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label   col-sm-2 text-str" for="Adrs">Address</label>
+                                        <div class="col-sm-8 ">
+                                            <textarea name="Address" rows="2" cols="3" ng-model="customer.ADDRESS1" placeholder="Address" class="txt" uppercase-only> </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 rwa ">
+                                <div class=" rwa">
+                                    <div class="form-group">
+                                        <label class="control-label   col-sm-2 text-str" for="Group">Group</label>
+
+                                        <div class="dropdown select" style="width: 100%;">
+                                            <div class="col-sm-9 ">
+                                                <select name="Group" class="txt">
+                                                    <option value="" selected="selected">PRIMARY LEVEL</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-6">
+                                            <label class="control-label   col-sm-4 text-str" for="Phone" style="padding-left:0px;">Phone</label>
+                                            <div class="col-sm-8 ">
+                                                <input type="text" id="" name="Phone" ng-model="customer.PHONE" placeholder="Phone Number" class="txt">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="control-label   col-sm-2 text-str" for="Phone">Fax</label>
+                                            <div class="col-sm-8 ">
+                                                <input type="text" name="Fax" ng-model="customer.FAX" placeholder="Fax" class="txt">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{ 'has-error' : customerForm.Email.$invalid && (customerForm.Email.$dirty || submitted)}">
+                                        <label class="control-label   col-sm-2 text-str" for="Email">Email</label>
+                                        <div class="col-sm-8">
+                                            <input type="email" class="txt" ng-model="customer.EMAIL" name="Email" placeholder="Customer Name" />
+                                        </div>
+                                        <div class="col-sm-1 mandetary "></div>
+                                        <div style=" margin-top: 36px; margin-left: 13px;" ng-show="customerForm.Email.$error.Email" class="help-block">Please input a valid email.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div></div>
+                    </div>
+
+                    <div class="col-lg-12 rwa frame-gap">
+                    </div>
+
+                    <div class="col-lg-12 rwa box-shadow">
+                        <div class=" rwa">
+                            <div class="col-lg-6 rwa ">
+                                <div class="rwa">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3 text-str" for="contact">Contact Person</label>
+                                        <div class="col-sm-6 ">
+                                            <input type="text" name="Contact Person" ng-model="customer.CONTACT" class="txt" placeholder="Contact Person" uppercase-only>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label class="control-label col-sm-3 text-str" for="Payment">Payment Terms</label>
+                                        <div class="col-sm-6 ">
+                                            <input type="text" name="Payment Terms" ng-model="customer.PAY_TERMS" placeholder=" payment terms" class="txt" uppercase-only>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3 text-str" for="Payment">Credit Limit</label>
+                                        <div class="col-sm-6 ">
+                                            <input type="text" name="Credit Limit" ng-model="customer.CREDITLIMIT" placeholder="Credit Limit" class="numeric-aling txt" numbers-only>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label class="control-label col-sm-3 text-str" for="Phone">Credit Period</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="Credit Period" ng-model="customer.CREDIT_PERIOD" placeholder="Credit Period" class="numeric-aling txt" numbers-only style="width:50% !important;">
+                                            <label for="day" class="lblmarg">Day(s)</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3 text-str" for="List">Customer Type</label>
+                                        <div class="col-sm-6">
+                                            <select name="CustomerType" class="txt" ng-model="customer.AC_TYPE">
+                                                <option value="" selected="selected">--Select customer Type--</option>
+                                                <option value="DEALER"> DEALER</option>
+                                                <option value="REATAIL">RETAIL </option>
+
+                                            </select>
+                                        </div><br /><br />
+                                        <label for="A/c" style="padding-left:157px;">A/c On hold</label>
+                                        <input type="checkbox" ng-model="customer.AC_ON_HOLD" ng-true-value="1" ng-false-value="0" name="A/c on hold" />
+                                        <label for="A/c">Credit Card</label>
+                                        <input type="checkbox" ng-model="customer.IsCreditCard" ng-true-value="1" ng-false-value="0" name="Credit Card" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--customer locations -->
+                            <div class="col-lg-6 rwa ">
+                                <h4><label for="location">Customer Locations</label></h4>
+
+                                <div class="col-lg-12 rwa " style="height:200px; overflow-x: hidden; overflow-y: auto;">
+                                    <table class="table table-striped table-bordered sequential-control">
+                                        <!--title-->
+
+                                        <tr class="tr-top">
+                                            <th class="bg-aqua-gradient">Code</th>
+                                            <th class="bg-aqua-gradient">Location</th>
+                                            <th colspan="2" class="bg-aqua-gradient">Action</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="tstyle">
+                                                <input style="width: 100px;" type="text" easy-complete="" placeholder="Search Loc"
+                                                       ng-model="item.CustLoc_Cd"
+                                                       ec-template="headertemplate"
+                                                       ec-showheader="true"
+                                                       ec-valueholder="item.CustLoc_Name"
+                                                       ec-transport="transport" uppercase-only />
+                                            </td>
+                                            <td class="tstyle">
+                                                <input style="width: 250px" type="text" ng-model="item.CustLoc_Name" disabled="disabled" />
+                                            </td>
+
+                                            <td class="tstyle">
+                                                <button class="btn btn-danger grid-save-round-btn" ng-click="clearItem();" title="Clear" id="Div_PRE_BtnCancel" style="font-size: 20px; background: #ED9E9E; color: #C90000;"><i class="glyphicon glyphicon-circle-arrow-left"></i></button>
+                                            </td>
+                                            <td class="tstyle">
+                                                <button class="btn btn-success grid-save-round-btn" data-id="A" title="Save" ng-click="addUpdateItem()"><i class="glyphicon glyphicon-plus-sign "></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr ng-repeat="item in items">
+
+                                            <td class="tstyle">
+                                                {{item.CustLoc_Cd}}
+                                            </td>
+                                            <td class="tstyle">
+                                                {{item.CustLoc_Name}}
+                                            </td>
+
+                                            <td class="tstyle round-btn-holder">
+                                                <button ng-click="updateItem(item,$index)" class="btn btn-default trans-round-btn" type="button" title="Edit"><i class="glyphicon glyphicon-pencil"></i></button>
+                                            </td>
+                                            <td class="tstyle round-btn-holder">
+                                                <button ng-click="deleteitem(item,$index)" class="btn btn-default trans-round-btn" type="button" title="Delete"><i class="glyphicon glyphicon-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="panel-footer-pager" ng-show="pagesCount2>1">
+                                    <div class="text-center">
+                                        <custom-pager page="{{page2}}" pages-count="{{pagesCount2}}" total-count="{{totalCount2}}" search-func="searchCustLocTran(page)"></custom-pager>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--customer locations -->
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-12 rwa frame-gap">
+                </div>
+
+            </section>
+            <div class="col-lg-12" style="padding-bottom:6%">
+                <a href="#/customers" class="btn btn-default pull-left">Back</a>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary" ng-click="createCustomer()" ng-hide="customer.ID!=undefined" ng-disabled="customerForm.$invalid">Create</button>
+                    <button type="button" class="btn btn-primary" ng-click="updateCustomer()" ng-show="customer.ID!=undefined" ng-disabled="customerForm.$invalid">Update</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

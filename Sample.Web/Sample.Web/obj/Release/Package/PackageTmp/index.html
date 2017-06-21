@@ -1,0 +1,645 @@
+﻿<!DOCTYPE html>
+<html lang="en-us" ng-app="AssetAdminApp">
+<head>
+    <meta charset="utf-8">
+    <title>Solver Assets </title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      
+    <!-- #CSS Links -->  
+    <!-- Basic Styles -->
+    <link href="css/easyComplete.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
+    <link href="scripts/vendors/Notification/angular-notify.css" rel="stylesheet" />
+    <link href="scripts/vendors/Notification/angular-ui-notification.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!--<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />-->
+    <!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+    <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-skins.min.css">
+
+    <!-- We recommend you use "your_style.css" to override SmartAdmin
+         specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+    <link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+
+    <!-- #FAVICONS -->
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+
+    <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+    <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css">
+    <!-- #GOOGLE FONT -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+    <!-- #APP SCREEN / ICONS -->
+    <!-- Specifying a Webpage Icon for Web Clip
+         Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+    <link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/splash/touch-icon-ipad-retina.png">
+    <!--new css-->
+    <link href="css/dropdown.css" rel="stylesheet" />
+
+    <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Startup image for web apps -->
+    <link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)">
+
+
+
+
+</head>
+
+<!--
+
+TABLE OF CONTENTS.
+
+Use search to find needed section.
+
+===================================================================
+
+|  01. #CSS Links                |  all CSS links and file paths  |
+|  02. #FAVICONS                 |  Favicon links and file paths  |
+|  03. #GOOGLE FONT              |  Google font link              |
+|  04. #APP SCREEN / ICONS       |  app icons, screen backdrops   |
+|  05. #BODY                     |  body tag                      |
+|  06. #HEADER                   |  header tag                    |
+|  07. #PROJECTS                 |  project lists                 |
+|  08. #TOGGLE LAYOUT BUTTONS    |  layout buttons and actions    |
+|  09. #MOBILE                   |  mobile view dropdown          |
+|  10. #SEARCH                   |  search field                  |
+|  11. #NAVIGATION               |  left panel & navigation       |
+|  12. #MAIN PANEL               |  main panel                    |
+|  13. #MAIN CONTENT             |  content holder                |
+|  14. #PAGE FOOTER              |  page footer                   |
+|  15. #SHORTCUT AREA            |  dropdown shortcuts area       |
+|  16. #PLUGINS                  |  all scripts and plugins       |
+
+===================================================================
+
+-->
+<!-- #BODY -->
+<!-- Possible Classes
+
+    * 'smart-style-{SKIN#}'
+    * 'smart-rtl'         - Switch theme mode to RTL
+    * 'menu-on-top'       - Switch to top navigation (no DOM change required)
+    * 'no-menu'			  - Hides the menu completely
+    * 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
+    * 'fixed-header'      - Fixes the header
+    * 'fixed-navigation'  - Fixes the main menu
+    * 'fixed-ribbon'      - Fixes breadcrumb
+    * 'fixed-page-footer' - Fixes footer
+    * 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
+-->
+
+<body class="" ng-controller="rootCtrl" ng-class="{'login-style-bg':islogged==false}" ng-cloak>
+
+    <!-- #HEADER -->
+    <header id="header" ng-show="islogged">
+        <div id="logo-group">
+
+            <!-- PLACE YOUR LOGO HERE -->
+            <span id="logo"> <a href="/#/"> <img src="img/logo.png" alt="Solver Assets"> </a></span>
+            <!-- END LOGO PLACEHOLDER -->
+            <!-- Note: The activity badge color changes when clicked and resets the number to 0
+                 Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
+            <!--<span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 21 </b> </span> --><!-- hide for feature use-->
+
+            <!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
+            <div class="ajax-dropdown">
+
+                <!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
+                <div class="btn-group btn-group-justified" data-toggle="buttons">
+                    <label class="btn btn-default">
+                        <input type="radio" name="activity" id="ajax/notify/mail.html">
+                        Msgs (14)
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" name="activity" id="ajax/notify/notifications.html">
+                        notify (3)
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" name="activity" id="ajax/notify/tasks.html">
+                        Tasks (4)
+                    </label>
+                </div>
+
+                <!-- notification content -->
+                <div class="ajax-notifications custom-scroll">
+
+                    <div class="alert alert-transparent">
+                        <h4>Click a button to show messages here</h4>
+                        This blank page message helps protect your privacy, or you can show the first message here automatically.
+                    </div>
+
+                    <i class="fa fa-lock fa-4x fa-border"></i>
+
+                </div>
+                <!-- end notification content -->
+                <!-- footer: refresh area -->
+                <span>
+                    Last updated on: 12/12/2013 9:43AM
+                    <button type="button" data-loading-text="Loading..." class="btn btn-xs btn-default pull-right">
+                        <i class='fa fa-refresh fa-spin'></i>
+                        <i class="fa fa-refresh"></i>
+                    </button>
+                </span>
+                <!-- end footer -->
+
+            </div>
+            <!-- END AJAX-DROPDOWN -->
+        </div>
+        <!-- DEFAULT SECTION -->
+        <div id="dflt-section">
+
+        </div>
+        <!-- #TOGGLE LAYOUT BUTTONS -->
+        <!-- pulled right: nav area -->
+        <div class="pull-right">
+
+            <!-- collapse menu button -->
+            <div id="hide-menu" class="btn-header pull-right">
+                <span> <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu"><i class="fa fa-reorder"></i></a> </span>
+            </div>
+            <!-- end collapse menu -->
+            <!-- #MOBILE -->
+            <!-- Top menu profile link : this shows only when top menu is active -->
+            <ul id="mobile-profile-img" class="header-dropdown-list hidden-xs padding-5">
+                <li class="">
+                    <a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown">
+                        <img src="img/avatars/sunny.png" alt="Sarath Lal" class="online" />
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li>
+                            <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0"><i class="fa fa-cog"></i> Setting</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#ajax/profile.html" class="padding-10 padding-top-0 padding-bottom-0"> <i class="fa fa-user"></i> <u>P</u>rofile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="toggleShortcut"><i class="fa fa-arrow-down"></i> <u>S</u>hortcut</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i> Full <u>S</u>creen</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a ng-click="logout()" class="padding-10 padding-top-5 padding-bottom-5"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- logout button -->
+            <div id="logout" class="btn-header transparent pull-right">
+                <span> <a ng-click="logout()" title="Sign Out"><i class="fa fa-sign-out"></i></a></span>
+            </div>
+            <!-- end logout button -->
+            <!-- search mobile button (this is hidden till mobile view port) -->
+            <div id="search-mobile" class="btn-header transparent pull-right">
+                <span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
+            </div>
+            <!-- end search mobile button -->
+            <!-- #SEARCH -->
+            <!-- input: search field -->
+            <!-- end input: search field -->
+            <!-- fullscreen button -->
+            <!-- end fullscreen button -->
+            <!-- multiple lang dropdown : find all flags in the flags page -->
+            <!-- end multiple lang -->
+
+        </div>
+        <!-- end pulled right: nav area -->
+
+    </header>
+    <!-- END HEADER -->
+    <!-- #NAVIGATION -->
+    <!-- Left panel : Navigation area -->
+    <!-- Note: This width of the aside area can be adjusted through LESS/SASS variables -->
+    <aside id="left-panel" ng-show="islogged">
+
+        <!-- User info -->
+        <div class="login-info">
+
+            <span>
+                <!-- User image size is adjusted inside CSS, it should stay as is -->
+
+                <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+                    <!--<img src="img/avatars/blank.png" alt="me" class=" img-circle" />-->
+                    <img ng-src="{{repository.loggedUser.imagepath}}" alt="me" class=" img-circle" />  
+                    <span>
+                        {{repository.loggedUser.fullname}}
+                    </span><br />
+                </a>
+
+            </span>
+
+        </div>
+        <!-- end user info -->
+        <!-- NAVIGATION : This navigation is also responsive
+
+        To make this navigation dynamic please make sure to link the node
+        (the reference to the nav > ul) after page load. Or the navigation
+        will not initialize.
+        -->
+        <nav>
+            <!--<menu-bar></menu-bar>-->
+            <!--
+            NOTE: Notice the gaps after each icon usage <i></i>..
+            Please note that these links work a bit different than
+            traditional href="" links. See documentation for details.
+            -->
+
+            <ul>
+                <li>
+                    <a href="#/"><i class="fa fa-fw fa-bars"></i> <span class="menu-item-parent">Master</span></a>
+                    <ul>
+                        <li>
+                            <a href="#/users">User</a>
+                        </li>
+                        <li>
+                            <a href="#/departments">Department</a>
+                        </li>
+                        <li>
+                            <a href="#/locations">Location</a>
+                        </li>
+                        <li>
+                            <a href="#/assettypes">Asset Type</a>
+                        </li>
+                        <li>
+                            <a href="#/employees">Employee</a>
+                        </li>
+                        <li>
+                            <a href="#/ownerships">Ownership</a>
+                        </li>
+                        <li>
+                            <a href="#/suppliers">Supplier</a>
+                        </li>
+                        <li>
+                            <a href="#/customerLocations">Customer Location</a>
+                        </li>
+                        <li>
+                            <a href="#/customers">Customer</a>
+                        </li>
+                        <li>
+                            <a href="#/assetRegister">Asset Register</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#/"><i class="fa fa-fw fa-rocket"></i> <span class="menu-item-parent">Transactions</span></a>
+                    <ul>
+                        <li>
+                            <a href="#/transactions/purchaseOrder">Purchase Order</a>
+                        </li>
+                        <li>
+                            <a href="#/transactions/purchase">Purchase</a>
+                        </li>
+                        <li>
+                            <a href="#/transactions/assetTransfer">Asset Transfer</a>
+                        </li>
+                        <li>
+                            <a href="#/transactions/sales">Sales</a>
+                        </li>
+                        <li>
+                            <a href="#/transactions/writeOff">Write Off</a>
+                        </li>
+                        <li>
+                            <a href="#/" style="background-color: #3a3633;"><i></i> <span class="menu-item-parent">Expenses</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#/transactions/consumption">Consumption Entry</a>
+                                </li>
+                                <li>
+                                    <a href="#/transactions/maintenance">Repair And Maintenance</a>
+                                </li>
+
+
+                                <li>
+                                    <a href="#/transactions/otherExpenses">Other Expenses</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#/transactions/renewal">Renewal</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#/"><i class="fa fa-fw fa-line-chart"></i> <span class="menu-item-parent">Reports</span></a>
+                    <ul style="height: auto; max-height: 297px; overflow-y: auto; ">
+
+                        <li>
+                            <a href="#" style="background-color: #3a3633;"><i></i> <span class="menu-item-parent">Asset Valuation</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#/reports/assetDetails">Asset Details</a>
+                                </li>
+                                <li>
+                                    <a href="#/reports/assetList">Asset List</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#" style="background-color: #3a3633;"><i></i> <span class="menu-item-parent">Asset Inventory</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#/reports/assetInventorySummary">Asset Inventory (Summary)</a>
+                                </li>
+                                <li>
+                                    <a href="#/reports/assetInventoryDetailed">Asset Inventory (Detailed)</a>
+                                </li>
+                                <li>
+                                    <a href="#/reports/assetInventoryDeptWise">Department wise Asset Inventory</a>
+                                </li>
+                                <li>
+                                    <a href="#/reports/assetMovementReport">Asset Movement Report</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#" style="background-color: #3a3633;"><i></i> <span class="menu-item-parent">Asset Purchase Order</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#/reports/assetPOSummary">Summary</a>
+                                </li>
+                                <li>
+                                    <a href="#/reports/assetPODetailed">Detailed</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#" style="background-color: #3a3633;"><i></i> <span class="menu-item-parent">Asset Purchase Reports</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#/reports/assetPurchaseRegister">Purchase Register</a>
+                                </li>
+                                <li>
+                                    <a href="#/reports/assetPurchaseReturnRegister">Purchase Return</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#/reports/assetWriteOffRegister">Write-Off Register</a>
+                        </li>
+                        <li>
+                            <a href="#/reports/assetSalesRegister">Sales Register</a>
+                        </li>
+                        <li>
+                            <a href="#/reports/documentExpiry">Document Expiry Report</a>
+                        </li>
+                        <li>
+                            <a href="#/reports/documentRenewal">Document Renewal Report</a>
+                        </li>
+                        <li>
+                            <a href="#" style="background-color: #3a3633;"><i></i> <span class="menu-item-parent">Consumption Register</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#/reports/consumptionSummary">Summary</a>
+                                </li>
+                                <li>
+                                    <a href="#/reports/consumptionDetailed">Detailed</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" style="background-color: #3a3633;"><i></i> <span class="menu-item-parent">Repair & Maintenance</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#/reports/RepairSummary">Summary</a>
+                                </li>
+                                <li>
+                                    <a href="#/reports/RepairDetailed">Detailed</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" style="background-color: #3a3633;"><i></i> <span class="menu-item-parent">Other Expenses</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#/reports/otherExpensesSummary">Summary</a>
+                                </li>
+                                <li>
+                                    <a href="#/reports/otherExpensesDetailed">Detailed</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#/reports/vehicleDetails">Vehicle Details</a>
+                        </li>
+                    </ul>
+                        </li>
+                        <li>
+                            <a href="#/"><i class="fa fa-fw fa-cogs"></i> <span class="menu-item-parent">Settings</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#/menu">Menu Administration</a>
+                                </li>
+                                <li>
+                                    <a href="#/settings/usermenuRights">User Menu Rights</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+        </nav>
+
+        <span class="minifyme" data-action="minifyMenu"> <i class="fa fa-arrow-circle-left hit"></i> </span>
+
+    </aside>
+    <!-- END NAVIGATION -->
+    <!-- #MAIN PANEL -->
+    <div id="main" role="main">
+
+
+        <!-- END RIBBON -->
+        <!-- #MAIN CONTENT -->
+        <div style="margin: 10px;">
+            <div ng-view></div>
+        </div>
+
+        <!-- END #MAIN CONTENT -->
+
+    </div>
+    <!-- END #MAIN PANEL -->
+    <!-- #PAGE FOOTER -->
+    <div class="page-footer">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <span class="txt-color-white">Solver Assets 1.0.0 <span class="hidden-xs"> - Developed by AFI Technologies LLC</span> © 2017</span>
+            </div>
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- END FOOTER -->
+    <!-- #SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+         Note: These tiles are completely responsive, you can add as many as you like -->
+    <!-- END SHORTCUT AREA -->
+    <!--================================================== -->
+    <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)
+    <script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>-->
+    <!-- #PLUGINS -->
+    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+    <!-- IMPORTANT: APP CONFIG -->
+    <script src="js/app.config.seed.js"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+    <!--[if IE 8]>
+        <h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+    <![endif]-->
+    <!-- Demo purpose only -->
+    <script src="js/demo.min.js"></script>
+
+
+
+    <!-- Imgage upload-->
+
+    <script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
+    <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    
+    <script src="scripts/vendors/console-sham.js"></script>
+    
+    
+    
+    <!-- MAIN APP JS FILE -->
+    <script src="js/app.seed.js"></script>
+    
+    <script src="scripts/vendors/jquery.ui.min.js"></script>
+    <script src="scripts/Vendors/angular.js"></script>
+    <script src="scripts/Vendors/angular-route.js"></script>
+    <script src="scripts/Vendors/angular-cookies.js"></script>
+    <script src="scripts/Vendors/angular-validator.js"></script>
+    <script src="scripts/Vendors/angular-base64.js"></script>
+    <script src="scripts/Vendors/angular-file-upload.js"></script>
+    <script src="scripts/Vendors/angular-sanitize.js"></script>
+
+    <script src="scripts/vendors/Notification/angular-notify.js"></script>
+    <script src="scripts/vendors/Notification/angular-ui-notification.min.js"></script>
+    <script src="scripts/vendors/angular-file-upload.min.js"></script>
+    <script src="scripts/Vendors/ui-bootstrap-tpls-0.13.1.js"></script>
+    <script src="scripts/Vendors/underscore.js"></script>
+    <script src="scripts/Vendors/raphael.js"></script>
+    <script src="scripts/Vendors/morris.js"></script>
+    <script src="scripts/Vendors/toastr.js"></script>
+    <script src="scripts/Vendors/jquery.fancybox.js"></script>
+    <script src="scripts/Vendors/jquery.fancybox-media.js"></script>
+    <script src="scripts/Vendors/loading-bar.js"></script>
+    <script src="scripts/Vendors/Notification/angular-notify.js"></script>
+    <script src="scripts/Vendors/Notification/angular-ui-notification.min.js"></script>
+    <script src="scripts/Vendors/UIBlock/blockui.js"></script>
+
+    <script src="scripts/spa/app.js"></script>
+    <script src="scripts/spa/AssetAdmin/directives/layoutDirectives.js"></script>
+
+
+    <script src="scripts/spa/modules/common.core.js"></script>
+    <script src="scripts/spa/modules/common.ui.js"></script>
+
+    <script src="scripts/spa/home/rootCtrl.js"></script>
+
+    <script src="scripts/spa/services/commonFunctions.js"></script>
+    <script src="scripts/spa/services/apiService.js"></script>
+    <script src="scripts/spa/services/notificationService.js"></script>
+    <script src="scripts/spa/services/blockingService.js"></script>
+    <script src="scripts/spa/services/membershipService.js"></script>
+    <script src="scripts/spa/services/UsersService.js"></script>
+    <script src="scripts/spa/services/DepartmentService.js"></script>
+    <script src="scripts/spa/services/LocationService.js"></script>
+    <script src="scripts/spa/services/AssetTypeService.js"></script>
+
+    <script src="scripts/spa/AssetAdmin/directives/controlDirectives.js"></script>
+    <script src="scripts/spa/AssetAdmin/directives/easyComplete.js"></script>
+    <script src="scripts/spa/AssetAdmin/directives/treeViewDirective.js"></script>
+    <script src="scripts/spa/AssetAdmin/directives/customPagerDirective.js"></script>
+
+
+
+    <script src="scripts/spa/AssetAdmin/dashboard/asset.admin.dashboard.ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/transactions/purchase/asset.transactions.purchase.Ctrl.js"></script>
+
+    <script src="scripts/spa/account/loginCtrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/layout/menuController.js"></script>
+
+    <script src="scripts/spa/AssetAdmin/users/asset.admin.users.ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/users/asset.admin.users.register.ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/users/asset.admin.users.edit.ctrl.js"></script>
+
+    <script src="scripts/spa/AssetAdmin/department/asset.admin.department.ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/department/asset.admin.departments.edit.ctrl.js"></script>
+
+    <script src="scripts/spa/AssetAdmin/locations/asset.admin.locations.ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/locations/asset.admin.location.edit.ctrl.js"></script>
+
+    <script src="scripts/spa/AssetAdmin/assettypes/asset.admin.assettype.ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/assettypes/asset.admin.assettype.new.ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/assettypes/asset.admin.assettypes.edit.ctrl.js"></script>
+
+    <script src="scripts/spa/AssetAdmin/employees/asset.admin.employees.ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/employees/asset.admin.employee.edit.ctrl.js"></script>
+
+    <script src="scripts/spa/AssetAdmin/ownership/asset.admin.ownership.ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/ownership/asset.admin.ownership.edit.ctrl.js"></script>
+
+    <script src="scripts/spa/AssetAdmin/supplier/asset.admin.suppliers.ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/supplier/asset.admin.supplier.edit.ctrl.js"></script>
+
+    <script src="scripts/spa/AssetAdmin/customerLocations/asset.admin.customer.location.ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/customerLocations/asset.admin.customer.location.edit.ctrl.js"></script>
+
+    <script src="scripts/spa/AssetAdmin/customer/asset.admin.customer.ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/customer/asset.admin.customers.edit.ctrl.js"></script>
+
+    <script src="scripts/spa/AssetAdmin/assetRegister/asset.admin.assetRegister.ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/assetRegister/asset.admin.assetRegister.edit.ctrl.js"></script>
+
+    <script src="scripts/spa/AssetAdmin/transactions/purchaseOrder/asset.transactions.purchaseOrder.Ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/transactions/purchaseOrder/asset.transactions.purchaseOrder.list.Ctrl.js"></script>
+
+    <script src="scripts/spa/AssetAdmin/transactions/purchase/asset.transactions.purchase.Ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/transactions/purchase/asset.transactions.purchase.list.Ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/transactions/purchase/purchase.asset.admin.assetRegister.ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/transactions/purchase/asset.transactions.purchase.pendingPO.list.Ctrl.js"></script>
+
+    <script src="scripts/spa/AssetAdmin/transactions/AssetTransfer/asset.transactions.assetTrnsfer.Ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/transactions/AssetTransfer/asset.transactions.assetTransfer.list.Ctrl.js"></script>
+
+    <script src="scripts/spa/AssetAdmin/transactions/writeOff/asset.transactions.writeOff.Ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/transactions/writeOff/asset.transactions.writeOff.list.Ctrl.js"></script>
+
+
+    <script src="scripts/spa/AssetAdmin/transactions/expenses/asset.transactions.consumption.Ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/transactions/expenses/asset.transactions.consumption.list.Ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/transactions/expenses/asset.transactions.maintenance.Ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/transactions/expenses/asset.transactions.otherExpeses.Ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/transactions/expenses/asset.transactions.renewal.Ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/transactions/expenses/asset.transactions.renewal.list.Ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/transactions/sales/asset.transactions.sales.Ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/transactions/sales/asset.transactions.sales.list.Ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/reports/assetenquiry/asset.admin.assetenquiry.ctrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/reports/assetenquiry/asset.transactions.assetTrnsferEnquiry.Ctrl.js"></script>
+
+    <script src="scripts/spa/AssetAdmin/menu/menuCtrl.js"></script>
+    <script src="scripts/spa/AssetAdmin/menu/menuEditCtrl.js"></script>
+</body>
+</html>

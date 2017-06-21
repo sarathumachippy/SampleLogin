@@ -1,0 +1,36 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Edit Deapartment {{EditedDept.Dept_Name}}
+    </div>
+    <div class="panel-body">
+        <form class=" form-horizontal" role="form" novalidate angular-validator name="EditUserForm" angular-validator-submit="Register()">
+            <div class="">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="control-label col-sm-4 text-str control-label" for="DeptName">Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="EditedDept.Dept_Name" name="DeptName" id="DeptName" placeholder="DeptName"
+                                       validate-on="blur" required required-message="'Department Name is required'">
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 selectContainer">
+                            <label class="control-label" for="DeptCode">DeptCode</label>
+                            <input type="text" class="form-control" ng-model="EditedDept.Dept_Cd" name="DeptCode" id="DeptCode" placeholder="DeptCode"
+                                   validate-on="blur" required required-message="'Last Name is required'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            <button type="button" class="btn btn-danger" ng-click="cancelEdit()">Cancel</button>
+            <button type="button" class="btn btn-primary" ng-click="updateDept()">Update</button>
+        </div>
+    </div>
+</div>

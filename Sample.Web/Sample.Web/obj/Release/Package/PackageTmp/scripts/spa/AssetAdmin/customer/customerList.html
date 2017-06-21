@@ -1,0 +1,107 @@
+﻿<div class="">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-3">
+                <h1 class="page-header">Customer Details</h1>
+            </div>
+            <div class="col-lg-4 create-button">
+                <button class="btn btn-success pull-right" ng-click="addCustomer()"><i class="fa fa-plus glyphicon-margin"></i>Create Customer</button>
+            </div>
+            <div class=" col-lg-5 panel-heading clearfix pull-left">
+                <div class="input-group">
+                    <input type="text" ng-model="filterCustomers" class="form-control shortInputSearch" placeholder="Filter, search customers..">
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary" ng-click="searchCustomer(page);"><i class="glyphicon glyphicon-search"></i></button>
+                        <button class="btn btn-primary" ng-click="clearSearch();"><i class="glyphicon glyphicon-remove-sign"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 ">
+        <center>
+            <img src="../../Scripts/spa/svg/three-dots.svg" class="before-ng-repeat" data-ng-show="busyingload" />
+        </center>
+        <table class="box-shadow table table-striped table-bordered sequential-control">
+           
+            <tbody>
+                <tr class="tr-top">
+                    <th class="tstyle">Customer Name</th>
+                    <th class="tstyle">Code</th>
+                    <th class="tstyle">Phone</th>
+                    <th class="tstyle" style="text-align:right"> Action</th>
+                </tr>
+                <tr ng-repeat="customer in customersList | filter:filterCustomers" class="tr-sub">
+                    <td class=" tstyle">
+                        {{customer.AC_DESC}}
+                    </td>
+                    <td class="tstyle">   {{customer.AC_CD}} </td>
+                    <td class="tstyle">  {{customer.PHONE}}</td>
+                    <td class="tstyle">
+                        <i class="pull-right need-right-margin  fa fa-trash-o" aria-hidden="true" style="cursor: pointer;" ng-click="openDeleteDialog(customer);"title="Delete Customer"></i>
+                        <i class="pull-right need-right-margin fa fa-pencil" aria-hidden="true" style="cursor: pointer;" ng-click="editCustomer(customer.ID);" title="Edit Customer"></i>
+
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <!--<div class="header-panel">
+            <div class="row">
+                <div class="product-info">
+                    <div class="col-lg-6">
+                        <div class="header-labels ">
+                            <h4>Customer Name</h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div>
+                            <h4>Phone</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box box-success no-border ing-padding" style="padding:0px;">
+            <div class="box-body"style="margin-bottom:69px;" >
+                <center>
+                    <img src="../../Scripts/spa/svg/three-dots.svg" class="before-ng-repeat" data-ng-show="busyingload" />
+                </center>
+                <ul class="products-list product-list-in-box" style="height:350px; overflow-x: hidden; overflow-y: auto;">
+                    <li class="item" ng-repeat="customer in customersList | filter:filterCustomers">
+                        <div class="product-info">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a class="product-title">
+                                        {{customer.AC_DESC}}
+                                    </a>
+
+                                    <div class="product-description">{{customer.AC_CD}}</div>
+                                </div>
+                                <div class="col-lg-3 ">
+                                    <a class="product-title">
+                                        {{customer.PHONE}}
+                                    </a>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <button class="pull-right btn btn-flat btn-sm btn-default need-right-margin detail-btn" ng-click="openDeleteDialog(customer);"><i class="fa fa-remove"></i></button>
+                                    <button class="pull-right btn btn-flat btn-sm btn-default need-right-margin detail-btn" ng-click="editCustomer(customer.ID);"><i class="fa fa-edit"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>-->
+                <div class="panel-footer-pager" ng-show="pagesCount>1">
+                    <div class="text-center">
+                        <custom-pager page="{{page}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="searchCustomer(page)"></custom-pager>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

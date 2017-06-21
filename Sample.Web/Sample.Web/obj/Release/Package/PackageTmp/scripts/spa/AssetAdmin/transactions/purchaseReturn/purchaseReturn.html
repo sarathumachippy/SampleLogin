@@ -1,0 +1,164 @@
+﻿<div class="row">
+    <div class="col-lg-12" ng-init="GetTranfNo();">
+        <div class=" box box-info" id="div_add_ingredient">
+            <div class="box-header with-border">
+                <h3 class="box-title">Asset Purchase Return</h3>
+            </div>
+            <form role="form" class="sleek-forms" novalidate angular-validator name="purchaseReturnForm" angular-validator-submit="saveheader()">
+                <div class="box-body">
+                    <div class="row ">
+                        <div class="col-sm-4 ">
+                            <div class="form-group">
+                                <label>Doc No</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="docNo" ng-model="item.doc" ng-disabled="true" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="docdate">Date</label>
+                                <input type="text" class="form-control" name="docdate" pickdate="" ng-model="item.AstItm_Trn_Dt" ng-required="true" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Reference</label>
+                                <input type="text" class="form-control" placeholder="Reference" ng-model="item.Reference" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="supplier">Supplier</label>
+                                <input type="text" class="form-control" name="supplier" placeholder="Supplier" ng-required="true" uppercase-only easy-complete=""
+                                       ng-model="item.AC_CD"
+                                       ec-template="headerSuppliers"
+                                       ec-showheader="true"
+                                       ec-onchange="supplierEventHandler"
+                                       ec-valueholder="item.AC_DESC"
+                                       ec-transport="loadSupplier" />
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="docdate">Supplier Name</label>
+                                <input type="text" class="form-control" name="docdate" ng-model="item.AC_DESC" ng-disabled="true" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="docdate">Acquisition Cost</label>
+                                <input type="text" class="form-control" name="docdate" ng-model="item.suppliernae" ng-disabled="true" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Asset Id</label><br />
+                                <select style="width: 100px;" ng-model=" assetTrf" ng-options="asset.As-Cd for asset in asset" ng-required="true"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Asset Name</label>
+                                <input type="text" class="form-control " ng-model="asset.Asset_Name" ng-required="true" ng-disabled="true" validate-on="blur" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="purchdate">Purchaise Date</label>
+                                <input type="text" class="form-control" name="purchdate" ng-model="item.purch_Dt" ng-required="true" ng-disabled="true" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row main">
+                    <div style="overflow-x:auto;overflow-y:auto">
+                        <table class="table-stripd data">
+                            <tr class="rwsp" style="height:50px;">
+                                <th class="Hdstyl">Id.No</th>
+                                <th class="Hdstyl">Asset SlNo</th>
+                                <th class="Hdstyl">Department</th>
+                                <th class="Hdstyl">Location</th>
+                                <th class="Hdstyl">Employee</th>
+                                <th class="Hdstyl" style="">Action</th>
+                            </tr>
+                            <tr style="height:50px;">
+                                <td class="custom-light" style="width: 120px;">
+                                    <select style="width: 100px;" ng-model=" PrdSrNo" ng-options="asset.slNo for asset in asset" ng-required="true"></select>
+                                </td>
+                                <td class="custom-light">
+
+                                    <input type="text" name="lname" ng-model="items.assetSrNo" size="15" disabled>
+
+                                </td>
+                                <td class="custom-light">
+                                    <input type="text" name="lname" ng-model="items.Dept_Name" size="15" disabled>
+
+                                </td>
+                                <td class="custom-light">
+
+                                    <input type="text" name="lname" ng-model="items.Loc_Name" size="15" disabled>
+
+                                </td>
+                                <td class="custom-light">
+
+                                    <input type="text" name="lname" ng-model="items.Emp_Name" size="15" disabled>
+
+                                </td>
+
+                                <td class="custom-light" style="width:100px">
+                                    <button class="btn btn-danger grid-save-round-btn" ng-click="clearItem($event)" title="Clear" id="" style="font-size: 20px; background: #ED9E9E; color: #C90000;"><i class="glyphicon glyphicon-circle-arrow-left"></i></button>
+                                    <button class="btn btn-success grid-save-round-btn" data-id="A" title="Save" ng-click="addUpdateItem($event)"><i class="glyphicon glyphicon-plus-sign "></i></button>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="item in detailsLst" style="height:50px;">
+                                <td style="padding-left:10px;">{{item.Ast_SlNo}}</td>
+
+                                <td>{{item.Dept_Name}} </td>
+
+                                <td>{{item.Loc_Name}} </td>
+
+                                <td>{{item.Emp_Name}}</td>
+
+                                <td class="round-btn-holder">
+                                    <button ng-click="updateItem(item,$index)" class="btn btn-default trans-round-btn" type="button" title="Edit"><i class="glyphicon glyphicon-pencil"></i></button>
+                                    <button ng-click="deleteitem(item,$index)" class="btn btn-default trans-round-btn" type="button" title="Delete"><i class="glyphicon glyphicon-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr></tr>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label>Return value</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="retunValue" ng-model="item.returnValue" ng-disabled="true"/>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <label>Remarks</label>
+                    <div class="form-group">
+                        <textarea class="form-control" name="remarks" ng-model="item.remarks"></textarea>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="button" class="btn btn-primary" ng-click="clearAllItems()">Clear</button>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary" ng-click="SaveTransfer()" ng-disabled="purchaseReturnForm.$invalid">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{97AA8C2F-0434-4132-9473-B024AC1F5E24}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sample.Web</RootNamespace>
+    <AssemblyName>Sample.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\demo.min.css" />
+    <Content Include="css\dropdown.css" />
+    <Content Include="css\easyComplete.css" />
+    <Content Include="css\menuStyle.css" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="img\assetbg.jpg" />
+    <Content Include="img\avatars\blank.png" />
+    <Content Include="img\client-bg.jpg" />
+    <Content Include="img\mybgd.jpg" />
+    <Content Include="img\service_mgmt.jpg" />
+    <Content Include="img\webdes.jpg" />
+    <Content Include="js\dropdown.js" />
+    <Content Include="js\libs\jquery-2.1.1.min.map" />
+    <None Include="Properties\PublishProfiles\QDESOnlineAssetWeb.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\lockscreen.min.css" />
+    <Content Include="css\smartadmin-production.min.css" />
+    <Content Include="css\smartadmin-rtl.min.css" />
+    <Content Include="css\smartadmin-skins.min.css" />
+    <Content Include="css\style.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="img\ajax-loader.gif" />
+    <Content Include="img\alpha.png" />
+    <Content Include="img\avatars\1.png" />
+    <Content Include="img\avatars\2.png" />
+    <Content Include="img\avatars\3.png" />
+    <Content Include="img\avatars\4.png" />
+    <Content Include="img\avatars\5.png" />
+    <Content Include="img\avatars\copyright.txt" />
+    <Content Include="img\avatars\female.png" />
+    <Content Include="img\avatars\male.png" />
+    <Content Include="img\avatars\sunny-big.png" />
+    <Content Include="img\avatars\sunny.png" />
+    <Content Include="img\blank.gif" />
+    <Content Include="img\clear.png" />
+    <Content Include="img\colorblind-friendly\pt1.png" />
+    <Content Include="img\colorblind-friendly\pt2.png" />
+    <Content Include="img\colorblind-friendly\pt3.png" />
+    <Content Include="img\demo\64x64.png" />
+    <Content Include="img\demo\basic.png" />
+    <Content Include="img\demo\chat.png" />
+    <Content Include="img\demo\copyright.txt" />
+    <Content Include="img\demo\demo-smartbig-alert.png" />
+    <Content Include="img\demo\demo-smartmedium-alert.png" />
+    <Content Include="img\demo\demo-smartsmall-alert.png" />
+    <Content Include="img\demo\hero.png" />
+    <Content Include="img\demo\image-placeholder-64x64.png" />
+    <Content Include="img\demo\iphoneview.png" />
+    <Content Include="img\demo\m1.jpg" />
+    <Content Include="img\demo\m2.jpg" />
+    <Content Include="img\demo\m3.jpg" />
+    <Content Include="img\demo\newsletter.png" />
+    <Content Include="img\demo\responseimg.png" />
+    <Content Include="img\demo\s1.jpg" />
+    <Content Include="img\demo\s2.jpg" />
+    <Content Include="img\demo\s3.jpg" />
+    <Content Include="img\demo\sa-demo.png" />
+    <Content Include="img\demo\sample.jpg" />
+    <Content Include="img\demo\sidebar.png" />
+    <Content Include="img\demo\sidebarhero.png" />
+    <Content Include="img\demo\site-1.jpg" />
+    <Content Include="img\demo\site-2.jpg" />
+    <Content Include="img\demo\video.png" />
+    <Content Include="img\demo\widget-colorpicker.png" />
+    <Content Include="img\favicon\favicon.ico" />
+    <Content Include="img\favicon\favicon.png" />
+    <Content Include="img\flags\flags.png" />
+    <Content Include="img\glass-image-copyright.txt" />
+    <Content Include="img\glass.jpg" />
+    <Content Include="img\gradient\login.png" />
+    <Content Include="img\hue.png" />
+    <Content Include="img\invoice\americanexpress.png" />
+    <Content Include="img\invoice\license.txt" />
+    <Content Include="img\invoice\mastercard.png" />
+    <Content Include="img\invoice\paypal.png" />
+    <Content Include="img\invoice\visa.png" />
+    <Content Include="img\jcrop\Jcrop.gif" />
+    <Content Include="img\loading.gif" />
+    <Content Include="img\logo-blacknwhite.png" />
+    <Content Include="img\logo-blue.png" />
+    <Content Include="img\logo-o.png" />
+    <Content Include="img\logo-pale.png" />
+    <Content Include="img\logo-white.png" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\mappin-default.png" />
+    <Content Include="img\minus.png" />
+    <Content Include="img\mybg.png" />
+    <Content Include="img\pattern\divider.jpg" />
+    <Content Include="img\pattern\graphy-xs.png" />
+    <Content Include="img\pattern\graphy.png" />
+    <Content Include="img\pattern\license-info.txt" />
+    <Content Include="img\pattern\lightpaperfibers.png" />
+    <Content Include="img\pattern\movable.png" />
+    <Content Include="img\pattern\nistri-xs.png" />
+    <Content Include="img\pattern\nistri.png" />
+    <Content Include="img\pattern\overlay-pattern.png" />
+    <Content Include="img\pattern\paper-xs.png" />
+    <Content Include="img\pattern\paper.png" />
+    <Content Include="img\pattern\pattern.png" />
+    <Content Include="img\pattern\sneaker_mesh_fabric-xs.png" />
+    <Content Include="img\pattern\sneaker_mesh_fabric.png" />
+    <Content Include="img\pattern\tileable_wood_texture-xs.png" />
+    <Content Include="img\pattern\tileable_wood_texture.png" />
+    <Content Include="img\plus.png" />
+    <Content Include="img\ribbon.png" />
+    <Content Include="img\sa-dark.png" />
+    <Content Include="img\sa-default.png" />
+    <Content Include="img\saturation.png" />
+    <Content Include="img\select2-spinner.gif" />
+    <Content Include="img\sort_asc.png" />
+    <Content Include="img\sort_asc_disabled.png" />
+    <Content Include="img\sort_both.png" />
+    <Content Include="img\sort_desc.png" />
+    <Content Include="img\sort_desc_disabled.png" />
+    <Content Include="img\splash\ipad-landscape.png" />
+    <Content Include="img\splash\ipad-portrait.png" />
+    <Content Include="img\splash\iphone.png" />
+    <Content Include="img\splash\sptouch-icon-iphone.png" />
+    <Content Include="img\splash\touch-icon-ipad-retina.png" />
+    <Content Include="img\splash\touch-icon-ipad.png" />
+    <Content Include="img\splash\touch-icon-iphone-retina.png" />
+    <Content Include="img\vt-menu.png" />
+    <Content Include="index.html" />
+    <Content Include="js\app.config.seed.js" />
+    <Content Include="js\app.seed.js" />
+    <Content Include="js\bootstrap\bootstrap.min.js" />
+    <Content Include="js\demo.min.js" />
+    <Content Include="js\libs\jquery-2.1.1.min.js" />
+    <Content Include="js\libs\jquery-ui-1.10.3.min.js" />
+    <Content Include="scripts\spa\app.js" />
+    <Content Include="scripts\spa\SampleAdmin\dashboard\asset.admin.dashboard.ctrl.js" />
+    <Content Include="scripts\spa\SampleAdmin\dashboard\dashboard.html" />
+    <Content Include="scripts\spa\SampleAdmin\directives\controlDirectives.js" />
+    <Content Include="scripts\spa\SampleAdmin\directives\customPagerDirective.js" />
+    <Content Include="scripts\spa\SampleAdmin\directives\customSelect.js" />
+    <Content Include="scripts\spa\SampleAdmin\directives\easyComplete.js" />
+    <Content Include="scripts\spa\SampleAdmin\directives\layoutDirectives.js" />
+    <Content Include="scripts\spa\SampleAdmin\layout\menuBar.html" />
+    <Content Include="scripts\spa\SampleAdmin\layout\menuController.js" />
+    <Content Include="scripts\spa\SampleAdmin\layout\pager.html" />
+    <Content Include="scripts\spa\SampleAdmin\login\login.html" />
+    <Content Include="scripts\spa\SampleAdmin\login\loginCtrl.js" />
+    <Content Include="scripts\spa\SampleAdmin\users\asset.admin.users.ctrl.js" />
+    <Content Include="scripts\spa\SampleAdmin\users\asset.admin.users.edit.ctrl.js" />
+    <Content Include="scripts\spa\SampleAdmin\users\asset.admin.users.register.ctrl.js" />
+    <Content Include="scripts\spa\SampleAdmin\users\changeUserPwdModal.html" />
+    <Content Include="scripts\spa\SampleAdmin\users\deleteUserModal.html" />
+    <Content Include="scripts\spa\SampleAdmin\users\editUserModal.html" />
+    <Content Include="scripts\spa\SampleAdmin\users\UserRegister.html" />
+    <Content Include="scripts\spa\SampleAdmin\users\UsersList.html" />
+    <Content Include="scripts\spa\home\rootCtrl.js" />
+    <Content Include="scripts\spa\modules\common.core.js" />
+    <Content Include="scripts\spa\modules\common.ui.js" />
+    <Content Include="scripts\spa\services\apiService.js" />
+    <Content Include="scripts\spa\services\blockingService.js" />
+    <Content Include="scripts\spa\services\commonFunctions.js" />
+    <Content Include="scripts\spa\services\fileUploadService.js" />
+    <Content Include="scripts\spa\services\membershipService.js" />
+    <Content Include="scripts\spa\services\notificationService.js" />
+    <Content Include="scripts\spa\services\UsersService.js" />
+    <Content Include="scripts\spa\svg\audio.svg" />
+    <Content Include="scripts\spa\svg\ball-triangle.svg" />
+    <Content Include="scripts\spa\svg\bars.svg" />
+    <Content Include="scripts\spa\svg\circles.svg" />
+    <Content Include="scripts\spa\svg\grid.svg" />
+    <Content Include="scripts\spa\svg\hearts.svg" />
+    <Content Include="scripts\spa\svg\oval.svg" />
+    <Content Include="scripts\spa\svg\puff.svg" />
+    <Content Include="scripts\spa\svg\rings.svg" />
+    <Content Include="scripts\spa\svg\spinning-circles.svg" />
+    <Content Include="scripts\spa\svg\tail-spin.svg" />
+    <Content Include="scripts\spa\svg\three-dots.svg" />
+    <Content Include="scripts\vendors\angucomplete-alt.min.js" />
+    <Content Include="scripts\vendors\angular-base64.js" />
+    <Content Include="scripts\vendors\angular-cookies.js" />
+    <Content Include="scripts\vendors\angular-file-upload.js" />
+    <Content Include="scripts\vendors\angular-file-upload.min.js" />
+    <Content Include="scripts\vendors\angular-route.js" />
+    <Content Include="scripts\vendors\angular-sanitize.js" />
+    <Content Include="scripts\vendors\angular-validator.js" />
+    <Content Include="scripts\vendors\angular.js" />
+    <Content Include="scripts\vendors\bootstrap.js" />
+    <Content Include="scripts\vendors\console-sham.js" />
+    <Content Include="scripts\vendors\jquery.fancybox-media.js" />
+    <Content Include="scripts\vendors\jquery.fancybox.js" />
+    <Content Include="scripts\vendors\jquery.js" />
+    <Content Include="scripts\vendors\jquery.raty.js" />
+    <Content Include="scripts\vendors\jquery.ui.min.js" />
+    <Content Include="scripts\vendors\loading-bar.js" />
+    <Content Include="scripts\vendors\modernizr.js" />
+    <Content Include="scripts\vendors\morris.js" />
+    <Content Include="scripts\vendors\Notification\angular-notify.css" />
+    <Content Include="scripts\vendors\Notification\angular-notify.js" />
+    <Content Include="scripts\vendors\Notification\angular-ui-notification.min.css" />
+    <Content Include="scripts\vendors\Notification\angular-ui-notification.min.js" />
+    <Content Include="scripts\vendors\raphael.js" />
+    <Content Include="scripts\vendors\respond.src.js" />
+    <Content Include="scripts\vendors\toastr.js" />
+    <Content Include="scripts\vendors\ui-bootstrap-tpls-0.13.1.js" />
+    <Content Include="scripts\vendors\UIBlock\blockui.js" />
+    <Content Include="scripts\vendors\underscore.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58602</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:59701/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,25 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Deleting Asset Type:  {{EditedAsset.Atp_Name}} 
+    </div>
+    <div class="panel-body">
+        <form role="form" novalidate angular-validator name="DeleteAssetForm">
+            <div class="">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="control-label" for="fullName">Are you sure want to delete {{EditedAsset.Atp_Name}}?</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary" ng-click="cancelEdit()">Cancel</button>
+            <button type="button" class="btn btn-danger" ng-click="deleteData()">Delete</button>
+        </div>
+    </div>
+</div>

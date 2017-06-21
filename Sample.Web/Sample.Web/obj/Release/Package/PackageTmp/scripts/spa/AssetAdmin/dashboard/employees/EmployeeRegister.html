@@ -1,0 +1,87 @@
+﻿<div class="" ng-init="loadEmployee()">
+    <div class="col-lg-10">
+        <div class="box-shadow box-info">
+            <div class="box-header with-border" style="border:none">
+                <h3 class="box-title" ng-hide="employee.ID!=undefined">New Emplyee</h3>
+                <h3 class="box-title" ng-show="employee.ID!=undefined">Edit Employee : {{employee.Emp_Name}}</h3>
+            </div>
+            <form role="form" class="form-horizontal sleek-forms" novalidate name="employeeRegForm">
+                <div class="box-body"> 
+                    <div class="">
+                        <div class="col-lg-6">
+                            <div class="form-group" ng-class="{ 'has-error' : employeeRegForm.employeecode.$invalid && (employeeRegForm.employeecode.$dirty || submitted)}">
+                                <label class="control-label col-sm-4 text-str" for="employeeid">Employee Code</label>
+                                <div class="col-sm-7">
+                                    <input type="text" name="employeecode" class="form-control" ng-model="employee.Emp_Cd" placeholder="Employee Code" uppercase-only ng-required="true" ng-disabled="employee.ID!=undefined" />
+                                    </div>
+                                <div class="col-sm-1 mandetary "></div>
+                                    <div ng-show="employeeRegForm.employeecode.$error.required && (employeeRegForm.employeecode.$dirty || submitted)" class="help-block">Employe Code is required.</div>
+                                </div>
+
+                            <div class="form-group" ng-class="{ 'has-error' : employeeRegForm.employeeName.$invalid && (employeeRegForm.employeeName.$dirty || submitted)}">
+                                <label class="control-label col-sm-4 text-str" for="employeeName">Employee Name</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" ng-model="employee.Emp_Name" name="employeeName" placeholder="Employee Name" ng-required="true" uppercase-only />
+                                    </div>
+                                <div class="col-sm-1 mandetary "></div>
+                                    <div style="margin-left:13px" ng-show="employeeRegForm.employeeName.$error.required && (employeeRegForm.employeeName.$dirty || submitted)" class="help-block">Employee name is required.</div>
+                                </div>
+
+                            <div class="form-group" ng-class="{ 'has-error' : employeeRegForm.address.$invalid && (employeeRegForm.address.$dirty || submitted)}">
+                                <label class="control-label col-sm-4 text-str" for="address">Address</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" ng-model="employee.Emp_Per_Add1" name="address" placeholder="Address"  uppercase-only />
+                                    </div>
+                                    <div ng-show="employeeRegForm.address.$error.required && (employeeRegForm.address.$dirty || submitted)" class="help-block">Address is required.</div>
+                                </div>
+                        </div>
+                        <div class="col-lg-6">
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 text-str" for="mobilePhone">Mobile phone</label>
+                                <div class="col-sm-7">
+                                    <input type="text" ng-model="employee.Emp_Pre_Phone" class="form-control" name="mobilePhone" placeholder="Mobile phone" />
+                                    </div>
+                                </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 text-str" for="email">Email address</label>
+                                <div class="col-sm-7">
+                                    <input type="email" class="form-control" ng-model="employee.Emp_Email" name="email" placeholder="Email address" />
+                                    </div>
+                                </div>
+
+
+                            <div class="form-group" ng-class="{ 'has-error' : employeeRegForm.fullName.$invalid && (employeeRegForm.fullName.$dirty || submitted)}">
+                                <label class="control-label col-sm-4 text-str" for="gender" style="margin-right:14px">Gender</label>
+                                
+                                <div class="form-group">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" class="radioBtnClass" name="Emp_Sex" value="M" checked ng-model="employee.Emp_Sex">
+                                            Male
+                                        </label>
+                                        <label>
+                                            <input type="radio" class="radioBtnClass" name="Emp_Sex" value="F" ng-model="employee.Emp_Sex">
+                                            Female
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-12">
+                            <a href="#/employees" class="btn btn-default pull-left">Back</a>
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-primary" ng-click="createEmployee(employee)" ng-hide="employee.ID!=undefined" ng-disabled="employeeRegForm.$invalid">Create</button>
+                                <button type="button" class="btn btn-primary" ng-click="updateEmployee()" ng-show="employee.ID!=undefined" ng-disabled="employeeRegForm.$invalid">Update</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

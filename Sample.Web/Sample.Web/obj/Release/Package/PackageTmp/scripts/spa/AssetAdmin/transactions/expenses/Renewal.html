@@ -1,0 +1,127 @@
+﻿<div class="" ng-init="initLoad();">
+    <div class="col-lg-12">
+        <form role="form" class=" form-horizontal sleek-forms" novalidate name="RenewalForm">
+            <div class=" box-info">
+                <div class="box-header with-border" style="border:none">
+                    <h3 class="box-title">Renewal Details</h3>
+                </div>
+                <div class="box-body box-shadow">
+                    <div class="">
+                        <div class="col-lg-6" style=" padding-top: 10px; padding-bottom: 10px;">
+                            <div class="form-group">
+                                <label class="control-label   col-sm-2 text-str" style="margin-top:10px">Sl.No</label>
+                                <div class="col-sm-5" style="margin-top:10px">
+                                    <input type="text" class="numeric-aling form-control" placeholder="Doc No" name="srNo" ng-model="renewal.Renew_No" ng-disabled="true" />
+                                </div>
+                                <div class="col-sm-1" style="margin-top:10px">
+                                    <i class="ion-compose edit-doc-indicator" title="Click to View Previous Renewal Records" ng-click="showPrevRecords()" style="margin-left:0px !important;"></i>
+                                </div>
+                                <div class="col-sm-1" style="margin-left:55px;">
+                                    <not-saved-status ng-show="mode=='new'"></not-saved-status>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label   col-sm-2 text-str">Asset Id</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" ng-blur="checkAssetId(renewal.Vehicle_No);" name="assetId" placeholder="Search Asset Id" validate-on="blur" ng-model=" renewal.Vehicle_No" easy-complete="" ec-valueholder="renewal.Ast_Name" ec-template="headerAssetId" ec-transport="loadAssetId" ec-showheader="true" required required-message="'Required field'" />
+                                </div>
+                                <div class="col-sm-1 mandetary "></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label   col-sm-2 text-str">Type</label>
+                                <div class="col-sm-8">
+                                    <select ng-model="renewal.Doc_Type" style=" width: 60%; border-radius: 3px; background-color:#eeeeee;">
+                                        <option value="Registration" ng-selected="true">Registration</option>
+                                        <option value="Insurance">Insurance</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" style=" padding-top: 20px; padding-bottom: 10px;">
+                            <div class="form-group">
+                                <label class="control-label   col-sm-3 text-str" for="docdate">Date</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="docdate" pickdate="" ng-readonly="true" placeholder="Renewal Date" ng-model="renewal.Renew_Dt" ng-required="true" />
+                                </div>
+                                <div class="col-sm-1 mandetary "></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label   col-sm-3 text-str">Asset Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Asset Name" validate-on="blur" ng-model="renewal.Ast_Name" ng-disabled="true" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--</form>-->
+            </div>
+            <div class="box-info">
+                <div class="box-header with-border" style="border:none">
+                    <h3 class="box-title" ng-show="renewal.Doc_Type=='Registration'">Registration Details</h3>
+                    <h3 class="box-title" ng-hide="renewal.Doc_Type=='Registration'">Insurance Details</h3>
+                </div>
+                <!--<form role="form" class=" form-horizontal sleek-forms" novalidate name="RenewalForm">-->
+                <div class="box-body box-shadow" style=" margin-bottom: 10px;">
+                    <div class="">
+                        <div class="col-lg-6" style=" padding-top: 10px; padding-bottom: 10px;">
+                            <div class="form-group">
+                                <label class="control-label   col-sm-4 text-str" ng-show="renewal.Doc_Type=='Registration'">Registration No</label>
+                                <label class="control-label   col-sm-4 text-str" ng-hide="renewal.Doc_Type=='Registration'">Policy No</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="RegNo" ng-show="renewal.Doc_Type=='Registration'" maxlength="10" placeholder="Registration No" ng-model="renewal.Doc_No" ng-required="true" />
+                                    <input type="text" class="form-control" name="plcyNo" ng-hide="renewal.Doc_Type=='Registration'" maxlength="10" placeholder="Policy No" ng-model="renewal.Doc_No" />
+                                </div>
+                                <div class="col-sm-1 mandetary "></div>
+                            </div>
+
+                            <div class="form-group" ng-hide="renewal.Doc_Type=='Registration'">
+                                <label class="control-label   col-sm-4 text-str">Insurance Company</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" placeholder="Company Name" name="cmpnyName" ng-model="renewal.Doc_Co"/>
+                                </div>
+                                <div class="col-sm-1 mandetary "></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label   col-sm-4 text-str">Amount Paid</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="numeric-aling form-control" placeholder="Amount" name="amount" ng-model="renewal.Doc_Amount" maxlength="8" numbers-only />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" style=" padding-top: 10px; padding-bottom: 10px;">
+                            <div class="form-group">
+                                <label class="control-label   col-sm-4 text-str" for="docdate" ng-show="renewal.Doc_Type=='Registration'">Registration Date</label>
+                                <label class="control-label   col-sm-4 text-str" for="docdate" ng-hide="renewal.Doc_Type=='Registration'">Insurance Date</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="docdate" pickdate="" ng-readonly="true" placeholder="Registration date" ng-show="renewal.Doc_Type=='Registration'" ng-model="renewal.Doc_Dt" ng-required="true" />
+                                    <input type="text" class="form-control" name="docdate" pickdate="" ng-readonly="true" placeholder="Insurance date" ng-hide="renewal.Doc_Type=='Registration'" ng-model="renewal.Doc_Dt" ng-required="true" />
+                                </div>
+                                <div class="col-sm-1 mandetary "></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label   col-sm-4 text-str">Expiry Date</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="docdate" placeholder="Expiry Date" pickdate="" ng-readonly="true" ng-model="renewal.Doc_ExpDt" ng-required="true" />
+                                </div>
+                                <div class="col-sm-1 mandetary "></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+        </form>
+            <div class="col-lg-12">
+                <button type="button" class="btn btn-default" ng-click="clearAllItems();">Clear</button>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary" ng-click="saveRenewal()" ng-hide="renewal.ID!=undefined" ng-disabled="RenewalForm.$invalid">Save</button>
+                    <button type="button" class="btn btn-primary" ng-click="updateRenewal()" ng-show="renewal.ID!=undefined" ng-disabled="RenewalForm.$invalid">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

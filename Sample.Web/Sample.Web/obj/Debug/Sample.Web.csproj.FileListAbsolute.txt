@@ -1,0 +1,6 @@
+E:\_Work\_Git Hub\Sample Login\Sample.Web\Sample.Web\bin\Sample.Web.dll.config
+E:\_Work\_Git Hub\Sample Login\Sample.Web\Sample.Web\bin\Sample.Web.dll
+E:\_Work\_Git Hub\Sample Login\Sample.Web\Sample.Web\bin\Sample.Web.pdb
+E:\_Work\_Git Hub\Sample Login\Sample.Web\Sample.Web\obj\Debug\Sample.Web.csprojResolveAssemblyReference.cache
+E:\_Work\_Git Hub\Sample Login\Sample.Web\Sample.Web\obj\Debug\Sample.Web.dll
+E:\_Work\_Git Hub\Sample Login\Sample.Web\Sample.Web\obj\Debug\Sample.Web.pdb

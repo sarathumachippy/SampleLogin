@@ -1,0 +1,162 @@
+﻿<div class="container-fluid" ng-init="initValues()">
+    <div class="box-header with-border" style="border:none !important;">
+        <h3 class="box-title">Asset Purchase Entry</h3>
+    </div>
+    <form role="form" class="form-horizontal sleek-forms" novalidate name="purchaseForm">
+
+        <div class="col-lg-12 box-shadow">
+            <div class="col-lg-12">
+                <div class="col-lg-3" style="margin-top:16px;">
+                    <div class="form-group" ng-class="{ 'has-error' : purchaseForm.AcCd.$invalid && (purchaseForm.AcCd.$dirty || submitted)}">
+                        <label class="control-label   col-sm-4 text-str" for="docno">Doc. No.</label>
+                        <div class="col-sm-5" style=" margin-left: 11px; width: 58%;">
+                            <input type="text" class="numeric-aling form-control" style="margin-left:-10px;" ng-model="purchase.Purch_No" ng-class="{'new-doc-no':mode=='new'}" ng-disabled="true"
+                                   name="docno" placeholder="Doc.No." ng-required="true" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-1 edit-doc-indicator" style="margin-top:16px !important;">
+                    <i class="ion-compose" title="Click to Edit Previous Purchase Entries" ng-click="showPurchaseRecords()"></i>
+                </div>
+                <div class="col-lg-1">
+                    <not-saved-status ng-show="mode=='new'"></not-saved-status>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-7" style=" float: right; padding-left: 88px;margin-top:16px">
+                        <label class="control-label   col-sm-4 text-str" for="docdate">Date</label>
+                        <div class="col-sm-7">
+                            <p class="input-group" style="display:block !important;">
+                                <input type="text" class="form-control" name="docdate" pickdate="" ng-readonly="true" ng-model="purchase.Purch_Dt" ng-required="true" close-text="Close" />
+                            </p>
+                        </div>
+                        <div class="col-sm-1 mandetary "></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="col-lg-6">
+
+                    <div class="col-sm-7 form-group" ng-class="{ 'has-error' : purchaseForm.AcCd.$invalid && (purchaseForm.AcCd.$dirty || submitted)}">
+                        <label class="control-label   col-sm-4 text-str" for="supplier" style="padding-left:0px;">Supplier</label>
+                        <div class="col-sm-7" style="margin-left:-14px">
+                            <input type="text" class="form-control" name="supplier" placeholder="Search Supplier" ng-required="true" uppercase-only easy-complete=""
+                                   ng-model="item.AC_CD"
+                                   ec-template="headerSuppliers"
+                                   ec-showheader="true"
+                                   ec-valueholder="item.AC_DESC"
+                                   ng-value=" item.address1"
+                                   ec-onchange="supplierEventHandler"
+                                   ec-transport="loadSupplier" />
+                        </div>
+                        <div class="col-sm-1 mandetary "></div>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label class="control-label   col-sm-5 text-str" for="supname" style="margin-left:-34px">Thru LPO</label>
+                        <div class="col-sm-1" style="margin-left:-25px">
+                            <input type="checkbox" ng-model="assetRegister.Ast_Thru_Purch" />
+                        </div>
+                        <div class="col-sm-5">
+                            <input ng-disabled="assetRegister.Ast_Thru_Purch==true && item.AC_CD!=undefined?false:true" class="btn btn-primary" type="button" name="Pending Order" ng-click="showPendingPO()" value="Pending Order">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : purchaseForm.AcCd.$invalid && (purchaseForm.AcCd.$dirty || submitted)}">
+                        <label class="control-label   col-sm-2 text-str" for="supname">Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-model="item.AC_DESC" name="supname" placeholder="Supplier Name" ng-required="true" uppercase-only ng-disabled="true" />
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : purchaseForm.AcCd.$invalid && (purchaseForm.AcCd.$dirty || submitted)}">
+                        <label class="control-label   col-sm-2 text-str" for="supaddress">Address</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-model="item.ADDRESS1" name="supaddress" placeholder="Supplier Address" ng-disabled="true" uppercase-only />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group" ng-class="{ 'has-error' : purchaseForm.AcCd.$invalid && (purchaseForm.AcCd.$dirty || submitted)}">
+                        <label class="control-label   col-sm-4 text-str" for="remarks">Remarks</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" ng-model="purchase.Purch_Remarks" maxlength="30" name="remarks" placeholder="Remarks" />
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : purchaseForm.AcCd.$invalid && (purchaseForm.AcCd.$dirty || submitted)}">
+                        <label class="control-label   col-sm-4 text-str" for="supaddress">Purchase Invoice Ref</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" ng-model="purchase.Purch_Ref" name="invoice" maxlength="30" placeholder="Invoice Ref No" ng-required="true" />
+                        </div><div class="col-sm-1 mandetary "></div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : purchaseForm.AcCd.$invalid && (purchaseForm.AcCd.$dirty || submitted)}">
+                        <label class="control-label   col-sm-4 text-str" for="supaddress">Purchase Order Ref</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" ng-model="purchase.Purch_PO_Ref" name="Purchaseorder" maxlength="30" placeholder="Order Ref No" ng-required="true" style="margin-bottom:4%" />
+                        </div><div class="col-sm-1 mandetary "></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12 rwa frame-gap"></div>
+        <div class="col-lg-12 rwa box-shadow" style="height:auto">
+            <div class="col-lg-12" style="margin-top: 16px; margin-bottom: 16px; ">
+                <div class="col-lg-6">
+
+                    <div class="form-group" ng-class="{ 'has-error' : purchaseForm.AcCd.$invalid && (purchaseForm.AcCd.$dirty || submitted)}">
+                        <label class="control-label   col-sm-2 text-str" for="assetId">Asset ID</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-model="assetRegister.Ast_Id" name="assetid" placeholder="Asset ID" ng-required="true" ng-disabled="true" />
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : purchaseForm.AcCd.$invalid && (purchaseForm.AcCd.$dirty || submitted)}">
+                        <label class="control-label   col-sm-2 text-str" for="assetname">Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-model="assetRegister.Ast_Name" maxlength="50" name="assetname" placeholder="Asset Name" ng-disabled="true" style="margin-bottom:4%" />
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : purchaseForm.AcCd.$invalid && (purchaseForm.AcCd.$dirty || submitted)}" style="margin-left:89px">
+                        <button type="button" ng-click="loadAsseRegister()" style="height: 50px; width: 150px;" class="btn btn-success">Asset Details</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group" ng-class="{ 'has-error' : purchaseForm.AcCd.$invalid && (purchaseForm.AcCd.$dirty || submitted)}">
+                        <label class="control-label   col-sm-2 text-str" for="remarks">Qty</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="numeric-aling form-control" ng-model="assetRegister.Ast_Qty" ng-show="assetRegister.Ast_Thru_Purch==true" ng-change="QtyCheck()" name="qty" placeholder="Qty" only-numbers />
+                            <input type="text" class="numeric-aling form-control" ng-model="assetRegister.Ast_Qty" ng-show="assetRegister.Ast_Thru_Purch!=true" ng-change="QtyCheck()" ng-disabled="true" name="qty" placeholder="Qty" only-numbers />
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : purchaseForm.AcCd.$invalid && (purchaseForm.AcCd.$dirty || submitted)}">
+                        <label class="control-label   col-sm-2 text-str" for="rate">Rate</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="numeric-aling form-control" ng-model="assetRegister.Ast_Purch_Rate" ng-disabled="true" name="rate" placeholder="Rate" ng-required="true" />
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : purchaseForm.AcCd.$invalid && (purchaseForm.AcCd.$dirty || submitted)}">
+                        <label class="control-label   col-sm-2 text-str" for="disc">Disc. %</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="numeric-aling form-control" ng-model="assetRegister.Ast_PurchDisc_Perc" ng-disabled="true" name="disc" placeholder="Disc" />
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : purchaseForm.AcCd.$invalid && (purchaseForm.AcCd.$dirty || submitted)}">
+                        <label class="control-label   col-sm-2 text-str" for="value">Value</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="numeric-aling form-control" ng-model="assetRegister.Ast_Purch_Value" ng-disabled="true" name="value" placeholder="Value" ng-required="true" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12 rwa frame-gap"></div>
+        <div class="col-lg-12">
+            <a href="#/transactions/purchase" ng-click="clearAllItems();" class="btn btn-default pull-left">Clear</a>
+            <div class="pull-right">
+                <button type="button" class="btn btn-primary" ng-click="createPurchase(purchase)" ng-hide="mode=='edit'" ng-disabled="purchaseForm.$invalid">Create</button>
+                <button type="button" class="btn btn-primary" ng-click="cancelPurchOrder(purchase.Purch_No)" ng-show="mode!='new'" ng-disabled="purchaseForm.$invalid">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>

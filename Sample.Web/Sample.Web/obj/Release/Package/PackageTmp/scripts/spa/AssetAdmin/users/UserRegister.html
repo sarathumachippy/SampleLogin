@@ -1,0 +1,79 @@
+﻿<div class="" ng-init="loadUser()">
+    <div class="col-lg-10">
+        <div class="box-shadow box-info">
+            <div class="box-header with-border" style="border:none">
+                <h3 class="box-title" ng-hide="user.ID!=undefined">New User</h3>
+                <h3 class="box-title" ng-show="user.ID!=undefined">Edit User : {{user.Fullname}}</h3>
+            </div>
+            <form role="form" class=" form-horizontal sleek-forms" novalidate name="userRegForm">
+                <div class="box-body">
+                    <div class="">
+                        <div class="col-lg-6">
+                            <div class="form-group" ng-class="{ 'has-error' : userRegForm.userName.$invalid && (userRegForm.userName.$dirty || submitted)}">
+                                <label class="control-label col-sm-4 text-str" for="userName">User Name</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" ng-model="user.Username" id="userName" name="userName" placeholder="User Name" ng-required="true" ng-disabled="user.ID!=undefined" />
+                                </div>
+                                <div class="col-sm-1 mandetary "></div>
+                                <div ng-show="userRegForm.userName.$error.required && (userRegForm.userName.$dirty || submitted)" class="help-block">Username is required.</div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : userRegForm.inputPassword.$invalid && (userRegForm.inputPassword.$dirty || submitted)}">
+                                <label class="control-label col-sm-4 text-str" for="inputPassword">Password</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="inputPassword" name="inputPassword" autocomplete="off" ng-focus="changeInputType()" class="form-control" ng-model="user.Password" placeholder="Password" ng-required="true" ng-disabled="user.ID!=undefined" />
+                                </div>
+                                <div class="col-sm-1 mandetary "></div>
+                                <div ng-show="userRegForm.inputPassword.$error.required && (userRegForm.inputPassword.$dirty || submitted)" class="help-block">Password is required.</div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="">
+                                    <label class="control-label col-sm-4 text-str" for="addPhoto">Add photo</label>
+                                    <div class="col-sm-8" style="padding-top:6px;">
+                                        <input type="file" nv-file-select="" uploader="uploader" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group" ng-class="{ 'has-error' : userRegForm.fullName.$invalid && (userRegForm.fullName.$dirty || submitted)}">
+                                <label class="control-label col-sm-4 text-str" for="fullName">Full Name</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" ng-model="user.Fullname" name="fullName" placeholder="Full Name" ng-required="true" />
+                                </div>
+                                <div class="col-sm-1 mandetary "></div>
+                                <div style="margin-top:33px;margin-left:12px">
+                                    <div ng-show="userRegForm.fullName.$error.required && (userRegForm.fullName.$dirty || submitted)" class="help-block">Full Name is required.</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 text-str" for="email">Email address</label>
+                                <div class="col-sm-7">
+                                    <input type="email" class="form-control" ng-model="user.Email" id="email" name="email" placeholder="Email address" ng-required="true" />
+                                </div>
+                                <div class="col-sm-1 mandetary "></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 text-str" for="mobilePhone">Mobile phone</label>
+                                <div class="col-sm-7">
+                                    <input type="text" ng-model="user.Mobile" class="form-control" id="mobilePhone" name="mobilePhone" placeholder="Mobile phone" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <a href="#/users" class="btn btn-default pull-left">Back</a>
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-primary" ng-click="register()" ng-hide="user.ID!=undefined" ng-disabled="userRegForm.$invalid">Create</button>
+                                <button type="button" class="btn btn-primary" ng-click="updateUser()" ng-show="user.ID!=undefined" ng-disabled="userRegForm.$invalid">Update</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

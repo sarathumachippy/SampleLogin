@@ -1,0 +1,30 @@
+﻿<div>
+    <div>
+
+        <div style="display:table-row; width:500px;">
+            <div style="display:table-cell; width:250px;">
+                <div style="margin:10px 5px 30px 5px; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
+                    <span><b>Tree's Selected Node</b> : <br>{{treeId.currentNode.roleId}}</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="display:table-row; width:500px;">
+            <div style="display:table-cell; width:250px;">
+
+                <div data-angular-treeview="true"
+                     data-tree-id="treeId"
+                     data-tree-model="roleList"
+                     data-node-id="roleId"
+                     data-node-label="roleName"
+                     data-node-children="children">
+                </div>
+
+                <input type="button" ng-click="selectTreeValue()" class="btn btn-success" value="Select" /> 
+
+            </div>
+        </div>
+
+    </div>
+</div>

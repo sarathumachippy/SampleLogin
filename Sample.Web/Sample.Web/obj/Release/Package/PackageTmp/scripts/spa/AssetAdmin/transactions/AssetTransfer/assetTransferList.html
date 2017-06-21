@@ -1,0 +1,88 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading panel-heading-modal">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1 class="modal-page-header">Previous Asset Transfer Details</h1>
+            </div>
+            <div class=" col-lg-6 pull-right">
+                <div class="input-group">
+                    <input type="text" ng-model="filterPOList" class="form-control shortInputSearch" placeholder="search PO Detail...">
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary" ng-click="searchTransferList(page);"><i class="glyphicon glyphicon-search"></i></button>
+                        <button class="btn btn-primary" ng-click="clearSearch();"><i class="glyphicon glyphicon-remove-sign"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <div class="col-lg-12">
+            <div class="header-panel">
+                <div class="row">
+                    <div class="product-info">
+                        <div class="col-lg-3">
+                            <div class="header-labels ">
+                                <h4>Transfer. No.</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div>
+                                <h4>Date</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div>
+                                <h4>Asset Id</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-success no-border ing-padding" style="padding:0px;">
+                <div class="box-body">
+                    <center>
+                        <img src="../../Scripts/spa/svg/three-dots.svg" class="before-ng-repeat" data-ng-show="busyLoad" />
+                    </center>
+                    <ul class="products-list product-list-in-box">
+                        <li class="item" ng-repeat="at in poList | filter:filterPOList">
+                            <div class="product-info">
+                                <div class="row" style="cursor:pointer" ng-click="selectTransferId(at.ID);">
+                                    <div class="col-md-3">
+                                        <a class="product-title">
+                                            {{at.AstItm_Trn_No}}
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <a class="product-title">
+                                            {{at.AstItm_Trn_Dt | date:dateFormat}}
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <a class="product-title">
+                                            {{at.Ast_Id}}
+                                        </a>
+                                    </div>
+                                    <!--<div class="col-lg-2">
+            <button class="pull-right btn btn-flat btn-sm btn-default need-right-margin detail-btn" ng-click="editAssetRegister(assetRegister.ID);"><i class="fa fa-edit"></i></button>
+        </div>-->
+                                </div>
+
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="panel-footer-pager" ng-show="pagesCount>1">
+                        <div class="text-center">
+                            <custom-pager page="{{page}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="searchTransferList(page)"></custom-pager>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary" ng-click="cancelEdit()">Close</button>
+        </div>
+    </div>
+</div>

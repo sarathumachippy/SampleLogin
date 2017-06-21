@@ -1,0 +1,44 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Change password for user : {{EditedUser.Username}}
+    </div>
+    <div class="panel-body">
+        <form role="form" class="form-horizontal sleek-forms" novalidate angular-validator name="EditPasswordForm" angular-validator-submit="Register()">
+            <div class="">
+                <div class="form-group">
+
+                    <div class="col-lg-12">
+                        <label class="control-label col-sm-3 text-str control-label" for="fullName">New Password</label>
+                        <div class="col-sm-7">
+                            <input type="password" class="form-control" ng-model="EditedUser.Password1" name="password1" id="password1" placeholder="New Password"
+                                   validate-on="blur" required required-message="'New Password is required'">
+                        </div>
+                        <div class="col-sm-1 mandetary "></div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+
+                    <div class="col-lg-12">
+                        <label class="control-label col-sm-3 text-str control-label" for="mobilePhone">Confirm Password</label>
+                        <div class="col-sm-7">
+                            <input type="password" ng-model="EditedUser.Password2" class="form-control" id="password2" name="password2" placeholder="Confirm Password">
+                            <span class='form-control' style="color:red" ng-show='EditedUser.Password2!=EditedUser.Password1 && EditedUser.Password1!=undefined && EditedUser.Password2!=undefined '>
+                                Passwords don't match.
+                            </span>
+                        </div>
+                        <div class="col-sm-1 mandetary "></div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            <button type="button" class="btn btn-danger" ng-click="cancelEdit()">Cancel</button>
+            <button type="button" class="btn btn-primary" ng-click="changePwd()" ng-disabled="EditPasswordForm.$invalid||EditedUser.Password1!=EditedUser.Password2">Update</button>
+        </div>
+    </div>
+</div>

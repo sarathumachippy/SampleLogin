@@ -1,0 +1,49 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading" ng-show="Mode!=='edit'" >
+        Add Location
+    </div>
+    <div class="panel-heading" ng-show="Mode==='edit'">
+        Edit Location : {{EditedLoc.Loc_Name}}
+    </div>
+    <div class="panel-body">
+        <form role="form" class=" form-horizontal sleek-forms" novalidate name="locationForm">
+            <div class="">
+                <div class="form-group">
+                    <div class="">
+                        <div class="col-lg-12 selectContainer" ng-class="{ 'has-error' : locationForm.Loc_Cd.$invalid && (locationForm.Loc_Cd.$dirty || submitted)}">
+                            <label class="control-label   col-sm-4 text-str" for="Loc_Cd">Location Code</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" ng-model="EditedLoc.Loc_Cd" name="Loc_Cd" placeholder="Location code" uppercase-only
+                                       ng-required="true" ng-disabled="Mode=='edit'" limit-to="5">
+                                </div>
+                            <div class="col-sm-1 mandetary "></div>
+                                <div ng-show="locationForm.Loc_Cd.$error.required && (locationForm.Loc_Cd.$dirty || submitted)" class="help-block">Location Code is required.</div>
+                            </div>
+
+                    </div>
+                    </div>
+                <div class="form-group">
+                    <div class="">
+                        <div class="col-lg-12" ng-class="{ 'has-error' : locationForm.Loc_Name.$invalid && (locationForm.Loc_Name.$dirty || submitted)}">
+                            <label class="control-label col-sm-4 text-str" for="Loc_Name">Name</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" ng-model="EditedLoc.Loc_Name" name="Loc_Name" placeholder="Location name"
+                                       ng-required="true" uppercase-only>
+                                </div>
+                            <div class="col-sm-1 mandetary "></div>
+                                <div style="margin-left:13px" ng-show="locationForm.Loc_Name.$error.required && (locationForm.Loc_Name.$dirty || submitted)" class="help-block">Location Name is required.</div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            <button type="button" class="btn btn-danger" ng-click="cancelEdit()">Cancel</button>
+            <button type="button" class="btn btn-primary" ng-click="addLocation()" ng-show="Mode!=='edit'" ng-disabled="locationForm.$invalid">Add</button>
+            <button type="button" class="btn btn-primary" ng-click="updateLocation()" ng-show="Mode==='edit'" ng-disabled="locationForm.$invalid">Update</button>
+        </div>
+    </div>
+</div>

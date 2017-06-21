@@ -1,0 +1,182 @@
+﻿<div class="">
+    <div class="col-lg-12" ng-init="initLoad();" style="height:578px; overflow-x: hidden; overflow-y: auto;">
+        <div class="  box-info" id="div_add_ingredient">
+            <div class="box-header with-border" style="border:none">
+                <h3 class="box-title">Other Expense Entry</h3>
+            </div>
+            <form role="form" class="form-horizontal sleek-forms" novalidate angular-validator name="expenseForm" angular-validator-submit="saveheader()">
+
+                <div class="col-lg-12 main box-shadow">
+                    <div class="col-lg-6" style="margin-top:13px;">
+
+                        <div class="form-group">
+                            <label class="control-label   col-sm-2 text-str" style="margin-top:10px">Doc No</label>
+                            <div class="col-sm-4" style="margin-top:10px">
+                                <input type="text" class="numeric-aling form-control" name="docNo" ng-model="expense.Cons_DocNo" ng-disabled="true" />
+                            </div>
+                            <div class="col-sm-1" style="margin-top:10px">
+                                <i class="ion-compose edit-doc-indicator" title="Click to Edit Previous Purchase Orders" ng-click="showPrevRecords()" style="margin-left:0px !important;">
+                                </i>
+                            </div>
+                            <div class="col-sm-1" style="margin-left:51px">
+                                <not-saved-status ng-show="mode=='new'"></not-saved-status>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label   col-sm-2 text-str">Reference</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control " placeholder="Reference" ng-model="expense.Cons_Ref" />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label   col-xs-2 text-str" style="width:90px">Actual Date</label>
+
+                            <div class="col-xs-4">
+                                <input type="text" class="form-control" placeholder="From Date" pickdate="" ng-readonly="true" ng-model="expense.Cons_DateFrm" ng-required="true" />
+                            </div>
+                            <div class="col-xs-1">
+                                <label>To</label>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" class="form-control" placeholder="To Date" pickdate="" ng-readonly="true" ng-model="expense.Cons_DateTo" ng-required="true" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label   col-sm-2 text-str">Description</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control " placeholder="Description" ng-model="expense.con_Description" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style="margin-top:23px;margin-bottom:13px;">
+
+                        <div class="form-group">
+                            <label class="control-label   col-sm-2 text-str" for="docdate">Date</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="Doc Date" name="docdate" pickdate="" ng-readonly="true" ng-model="expense.Cons_DocDt" ng-required="true" />
+                            </div>
+                        </div>
+                        <div class="box-shadow" style="width: 100%; height: 175px; padding: 10px; border: 4px solid rgba(255, 255, 225, 0.07);">
+                            <div class="form-group" style="padding:7px;">
+                                <label for="gender">Pay Type</label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" class="radioBtnClass" name="paytype" value="0" checked ng-model="expense.Cons_PayType">
+                                        Cash
+                                    </label>
+                                    <label>
+                                        <input type="radio" class="radioBtnClass" name="paytype" value="1" ng-model="expense.Cons_PayType">
+                                        Credit
+                                    </label>
+                                </div>
+
+                                <label for="supplier">Supplier</label>
+                                <input type="text" class="" name="supplier" placeholder="Search Supplier" ng-required="true" uppercase-only easy-complete=""
+                                       ng-model="expense.Cons_SupCd"
+                                       ec-template="headerSuppliers"
+                                       ec-showheader="true"
+                                       ec-valueholder="expense.AC_DESC"
+                                       ng-value="expense.ADDRESS1"
+                                       ec-onchange="supplierEventHandler"
+                                       ec-transport="loadSupplier" style="margin-bottom: 7px; font-family: Calibri !important; " />
+
+                                <input type="text" class="form-control" placeholder="Suppplier Name" name="Supplier" ng-model="expense.AC_DESC " disabled="true" style=" margin-left: 47px; width: 87%;" />
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="">
+                    <div class="col-lg-12  main box-shadow" style="margin-bottom:78px">
+                        <div style="height: 350px; overflow-x: hidden; overflow-y: auto;">
+                            <table class="table-stripd data sequential-control table-bordered">
+                                <tr class="tr-top rwsp" style="height: 5px; background-color: white;">
+                                    <th class="Hdstyl">Asset Id</th>
+                                    <th class="Hdstyl">Name</th>
+                                    <th class="Hdstyl" style="width: 105px;">Asset Uniq Id</th>
+                                    <th class="Hdstyl">Amount</th>
+                                    <th class="Hdstyl" style="">Remarks</th>
+                                    <th class="Hdstyl" style="">Action</th>
+                                </tr>
+                                <tr style="height:5px;">
+                                    <td class="tstyle">
+                                        <input type="text" class="respon-width" name="assetId" style="width:100px" placeholder="Search Asset Id" validate-on="blur" value="item.Ast_Id" ng-model=" item.AssetID" easy-complete="" ng-value="item.Ast_Uniq_Id" ec-valueholder="item.Ast_Name"
+                                               ec-template="headerAssetId" ec-transport="loadAssetId" ec-showheader="true" ec-onchange="astEventHandler" />
+                                    </td>
+                                    <td class="tstyle">
+
+                                        <input type="text" class="respon-width" placeholder="Name" name="name" ng-model="item.Ast_Name" size="15" disabled>
+
+                                    </td>
+                                    <td class="tstyle">
+                                        <select style="width: 110px;" class="control-label" ng-model="assetId.Ast_Uniq_Id">
+                                            <option ng-repeat="assetId in uniqId"
+                                                    ng-selected="{{ assetId.selected == true }}">
+                                                {{assetId.Ast_Uniq_Id}}
+                                            </option>
+
+                                        </select>
+                                    </td>
+
+                                    <td class="tstyle">
+
+                                        <input type="text" class="numeric-aling respon-width" placeholder="Amount" name="amount" ng-model="item.Con_Amount" size="15" numbers-only>
+
+                                    </td>
+
+
+                                    <td class="tstyle">
+
+                                        <input type="text" class="respon-width" placeholder="Remarks" name="remarks" ng-model="item.Remarks" size="15" />
+
+                                    </td>
+
+
+                                    <td class="tstyle" style="width:75px">
+                                        <button class="btn btn-danger grid-save-round-btn" ng-click="clearItem($event)" title="Clear" id="" style="font-size: 20px; background: #ED9E9E; color: #C90000;"><i class="glyphicon glyphicon-circle-arrow-left"></i></button>
+                                        <button class="btn btn-success grid-save-round-btn" data-id="A" title="Save" ng-click="addUpdateItem($event)"><i class="glyphicon glyphicon-plus-sign "></i></button>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat="items in itemLst" style="height:50px;">
+                                    <td style="padding-left:10px;">{{items.AssetID}}</td>
+
+                                    <td class="tstyle">{{items.Ast_Name}} </td>
+
+                                    <td class="tstyle">{{items.Ast_Uniq_Id}} </td>
+
+                                    <td class="tstyle">{{items.Con_Amount}}</td>
+
+                                    <td class="tstyle">{{items.Remarks}}</td>
+                                    <td class="tstyle round-btn-holder">
+                                        <button ng-click="updateItem(items,$index)" class="btn btn-default trans-round-btn" type="button" title="Edit"><i class="glyphicon glyphicon-pencil"></i></button>
+                                        <button ng-click="deleteitem(items,$index)" class="btn btn-default trans-round-btn" type="button" title="Delete"><i class="glyphicon glyphicon-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr></tr>
+                            </table>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label   col-sm-4 text-str">Total Amount</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="numeric-aling form-control" placeholder="Total Amount" name="totAmt" ng-model="expense.Cons_TotAmount" disabled numbers-only />
+                                </div>
+                            </div>
+                        </div><br /><br />
+                        <div style="padding:10px; ">
+                            <button type="button" class="btn btn-default" ng-click="clearAllItems();">Clear</button>
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-primary" ng-click="saveCons()" ng-hide="mode=='edit'" ng-disabled="expenseForm.$invalid">Save</button>
+                                <button type="button" class="btn btn-primary" ng-click="updateCons()" ng-show="mode=='edit'" ng-disabled="expenseForm.$invalid">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

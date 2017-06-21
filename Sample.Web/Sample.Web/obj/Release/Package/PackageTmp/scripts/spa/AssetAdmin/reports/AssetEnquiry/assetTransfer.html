@@ -1,0 +1,192 @@
+﻿<div>
+    <div class="col-lg-12" ng-init="GetTranfNo();" style="height:578px; overflow-x: hidden; overflow-y: auto;">
+        <div class=" bx" id="div_add_ingredient">
+            <div class="box-header ">
+                <h3 class="box-title">Asset Transfer</h3>
+            </div>
+            <form role="form" class="form-horizontal sleek-forms" novalidate angular-validator name="assetTransferForm" angular-validator-submit="saveheader()">
+                <div class="box-body box-shadow">
+                    <div class="col-lg-12">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label   col-sm-3 text-str" style="margin-top:10px">Transfer No</label>
+                                <div class="col-sm-4" style="margin-top:10px">
+                                    <input type="text" class="numeric-aling form-control" name="transferNo" ng-model="item.AstItm_Trn_No" ng-disabled="true" />
+                                </div>
+                                <div class="col-sm-1" style="margin-top:10px">
+                                    <i class="ion-compose edit-doc-indicator" title="Click to Edit Previous Transfer Record" ng-click="showTrnasferRecords()" style="margin-left:0px;"></i>
+                                </div>
+                                <div class="col-sm-2" style="margin-left:51px">
+                                    <not-saved-status ng-show="mode=='new'"></not-saved-status>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label   col-sm-3 text-str">Asset Id</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="assetId" placeholder="Asset Id" validate-on="blur" ng-disabled="true"   ng-model=" item.Ast_Id"/>
+                                </div>
+                                
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label   col-sm-3 text-str">Asset Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Asset Name" validate-on="blur" ng-model="item.Ast_Name" ng-disabled="true" />
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label   col-sm-3 text-str">Department Id</label>
+                                <div class="col-sm-8">
+                                    <select style="width: 100px;" class="control-label" ng-change="getassetList();" ng-model=" assetDepartment" ng-options="assetDepartment.OldDept_Cd for assetDepartment in department" ng-required="true"></select>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label   col-sm-3 text-str">Department Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control " placeholder="Department Name" ng-model="assetDepartment.OldDept_Name" ng-required="true" ng-disabled="true" validate-on="blur" />
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-lg-6" style="margin-top:10px;">
+                            <div class="form-group">
+                                <label class="control-label   col-sm-3 text-str" for="docdate">Date</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Doc Date" name="docdate" pickdate="" ng-model="item.AstItm_Trn_Dt" ng-required="true" />
+                                </div>
+                                <div class="col-sm-1 mandetary "></div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label   col-sm-3 text-str">Remarks</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Remarks" ng-model="item.AstItm_Trn_Remarks" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label   col-sm-3 text-str">Location Id</label>
+                                <div class="col-sm-8">
+                                    <select style="width: 100px;" class="control-label" ng-change="getassetList();" ng-model=" assetLoc" ng-options="assetLoc.OldLoc_Cd for assetLoc in loacation" ng-required="true"></select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label   col-sm-3 text-str">Location Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" validate-on="blur" placeholder="Location Name" ng-model="assetLoc.OldLoc_Name" ng-disabled="true" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="main box-shadow" style="margin-top:8px;">
+                    <div style="overflow-x:auto;overflow-y:auto">
+                        <table class="table-stripd data sequential-control table-bordered" style="margin-top:7px;">
+                            <tr class="tr-top rwsp" style="height: 5px; background-color: floralwhite">
+                                <th class="Hdstyl">AsetSlNo</th>
+                                <th class="Hdstyl">IdNo</th>
+                                <th class="Hdstyl">Department</th>
+                                <th class="Hdstyl">Location</th>
+                                <th class="Hdstyl">Employee</th>
+                                <th class="Hdstyl">CustLocation</th>
+                                <th class="Hdstyl" style="">Action</th>
+                            </tr>
+                            <tr style="height:5px;">
+                                <td class="tstyle" style="width: 50px;">
+                                    <input type="text" class="respon-width" placeholder="AsetSlNo" ng-model="items.Ast_SlNo" maxlength="6" ng-disabled="true">
+                                </td>
+                                <td class="tstyle" style="width: 120px;">
+                                    <input type="text" class="respon-width" placeholder="IdNo" ng-model="items.IdNo" maxlength="6" ng-disabled="true">
+                                </td>
+                                <td class="tstyle">
+                                    <input style="width: 50px;" type="text" placeholder="Dep-Id" easy-complete=""
+                                           ng-model="items.Ds_Id"
+                                           ec-template="headerDepartment"
+                                           ec-showheader="true"
+                                           ec-valueholder="items.Dept_Name"
+                                           ec-transport="loadDepartment" uppercase-only />
+                                    <input type="text" name="lname" ng-model="items.Dept_Name" size="11" disabled style="width:50%">
+                                    <!--<input class="custom-light" style="width: 75px" type="text" ng-model="item.Dept_Name" disabled="disabled" />-->
+                                </td>
+                                <td class="tstyle">
+                                    <input style="width: 70px;" type="text" placeholder="Loc-Code" easy-complete=""
+                                           ng-model="items.Loc_Cd"
+                                           ec-template="headerLocation"
+                                           ec-showheader="true"
+                                           ec-valueholder="items.Loc_Name"
+                                           ec-transport="loadLocation" uppercase-only />
+                                    <input type="text" name="lname" ng-model="items.Loc_Name" size="11" disabled style="width:50%">
+                                    <!--  <input class="custom-light" style="width: 75px" type="text" ng-model="item.Loc_Name" disabled="disabled" />-->
+                                </td>
+                                <td class="tstyle">
+                                    <input style="width: 70px;" type="text" placeholder="Emp-Cd" easy-complete=""
+                                           ng-model="items.Emp_Cd"
+                                           ec-template="headerEmployee"
+                                           ec-showheader="true"
+                                           ec-valueholder="items.Emp_Name"
+                                           ec-transport="loadEmployee" uppercase-only />
+                                    <input type="text" name="lname" ng-model="items.Emp_Name" size="11" disabled style="width:50%">
+                                    <!--  <input class="custom-light" style="width: 75px" type="text" ng-model="item.Emp_Name" disabled="disabled" />-->
+                                </td>
+
+
+                                <td class="tstyle">
+                                    <input style="width: 50px;" type="text" placeholder="Cust-Loc" easy-complete=""
+                                           ng-model="items.CustLoc_Cd"
+                                           ec-template="headerCustLocation"
+                                           ec-showheader="true"
+                                           ec-valueholder="items.CustLoc_Name"
+                                           ec-transport="loadCustLocation" uppercase-only />
+                                    <input type="text" name="lname" ng-model="items.CustLoc_Name" size="11" disabled style="width:50%">
+                                    <!--<input class="custom-light" style="width: 75px" type="text" ng-model="item.CustLoc_Name" disabled="disabled" />-->
+                                </td>
+
+
+
+                                <td class="tstyle" style="width:100px">
+                                    <button class="btn btn-danger grid-save-round-btn" ng-click="clearItem($event)" title="Clear" id="" style="font-size: 20px; background: #ED9E9E; color: #C90000;"><i class="glyphicon glyphicon-circle-arrow-left"></i></button>
+                                    <button class="btn btn-success grid-save-round-btn" data-id="A" title="Save" ng-click="addUpdateItem($event)"><i class="glyphicon glyphicon-plus-sign "></i></button>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="item in detailsLst" style="height:50px;">
+                                <td style="padding-left:10px;">{{item.Ast_SlNo}}</td>
+
+                                <td class="tstyle">{{item.Ast_SlNo}} </td>
+
+                                <td class="tstyle">{{item.Dept_Name| limitTo:25}} </td>
+
+                                <td class="tstyle">{{item.Loc_Name | limitTo:25}} </td>
+
+                                <td class="tstyle">{{item.Emp_Name | limitTo:25}}</td>
+
+                                <td class="tstyle">{{item.CustLoc_Name| limitTo:25}}</td>
+
+                                <td class=" tstyle round-btn-holder">
+                                    <button ng-click="updateItem(item,$index)" class="btn btn-default trans-round-btn" type="button" title="Edit"><i class="glyphicon glyphicon-pencil"></i></button>
+                                    <button ng-click="deleteitem(item,$index)" class="btn btn-default trans-round-btn" type="button" title="Delete"><i class="glyphicon glyphicon-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr></tr>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="ftr" style="margin-bottom:6%;padding:10px">
+                    <button type="button" class="btn btn-default pull-left" ng-click="clearAllItems()">Clear</button>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary" ng-click="SaveTransfer()" ng-hide="mode=='edit'" ng-disabled="assetTransferForm.$invalid">Save</button>
+                        <button type="button" class="btn btn-primary" ng-click="UpdateTransfer()" ng-show="mode!='new'" ng-disabled="assetTransferForm.$invalid">Update</button>
+                        <button type="button" class="btn btn-primary" ng-click="CancelTransfer()" ng-show="mode!='new'" ng-disabled="assetTransferForm.$invalid">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

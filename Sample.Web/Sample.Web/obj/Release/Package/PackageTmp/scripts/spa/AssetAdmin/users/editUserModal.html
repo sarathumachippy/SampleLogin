@@ -1,0 +1,52 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Edit user {{EditedUser.Username}}
+    </div>
+    <div class="panel-body">
+        <form role="form" novalidate angular-validator name="EditUserForm" angular-validator-submit="Register()">
+            <div class="">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="control-label" for="fullName">Full Name</label>
+                            <input type="text" class="form-control" ng-model="EditedUser.Fullname" name="firstName" id="fullName" placeholder="Full Name"
+                                   validate-on="blur" required required-message="'Full Name is required'">
+                        </div>
+                        <div class="col-sm-6 selectContainer">
+                            <label class="control-label" for="Email">Email</label>
+                            <input type="text" class="form-control" ng-model="EditedUser.Email" name="Email" id="Email" placeholder="Email"
+                                   validate-on="blur" required required-message="'Last Name is required'">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <label class="control-label" for="mobilePhone">Mobile</label>
+                            <input type="text" ng-model="EditedUser.Mobile" class="form-control" id="mobilePhone" name="mobilePhone" placeholder="Mobile phone"
+                                   validate-on="blur" required required-message="'Mobile phone is required'">
+                        </div>
+                        <div class="col-xs-6 selectContainer">
+                            <label class="control-label" for="dateOfBirth">Date of Birth</label>
+                            <p class="input-group">
+                                <input type="text" class="form-control" name="dateOfBirth" datepicker-popup="{{format}}" ng-model="EditedUser.DOB" is-open="datepicker.opened"
+                                       datepicker-options="dateOptions" ng-required="true" datepicker-append-to-body="true" close-text="Close"
+                                       validate-on="blur" required required-message="'Date of birth is required'" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            <button type="button" class="btn btn-danger" ng-click="cancelEdit()">Cancel</button>
+            <button type="button" class="btn btn-primary" ng-click="updateUser()">Update</button>
+        </div>
+    </div>
+</div>

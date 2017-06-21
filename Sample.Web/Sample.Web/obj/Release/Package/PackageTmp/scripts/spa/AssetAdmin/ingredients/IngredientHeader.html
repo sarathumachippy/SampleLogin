@@ -1,0 +1,206 @@
+﻿<div class="row">
+    <div class="col-lg-12">
+        <div class="box box-info" id="div_add_ingredient">
+            <div class="box-header with-border">
+                <h3 class="box-title">New Ingredient</h3>
+            </div>
+            <form role="form" class="sleek-forms" novalidate angular-validator name="ingredientheaderform" angular-validator-submit="saveheader()" ng-init="test();">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                
+                                <input type="checkbox" 
+                                       name="IngredientActive"
+                                       ng-model="ingredient.IsActive" 
+                                       ng-true-value="1" 
+                                       ng-false-value="0" 
+                                       validate-on="blur"
+                                       ng-disabled="headersaved"
+                                       required required-message="'Required field'" />
+                                <label>Active</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Ingredient Id</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">UID_</span>
+                                    <input type="text"
+                                           class="form-control input-sm"
+                                           name="IngredientId"
+                                           ng-model="ingredient.ingId"
+                                           ng-maxlength="500"
+                                           ng-disabled="headersaved"
+                                           invalid-message="'Maximum length should be 500 Characters'"
+                                           validate-on="blur"
+                                           required required-message="'Required field'" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Scientific Name</label>
+                                <input type="text"
+                                       class="form-control input-sm"
+                                       name="IngredientScientificName"
+                                       ng-model="ingredient.ScientificName"
+                                       ng-maxlength="500"
+                                       ng-disabled="headersaved"
+                                       invalid-message="'Maximum length should be 500 Characters'"
+                                       validate-on="blur"
+                                       required required-message="'Required field'" />
+                            </div>
+                            <div class="form-group">
+                                <label>Scientific Formula</label>
+                                <input type="text"
+                                       class="form-control input-sm"
+                                       name="IngredientScientificFormula"
+                                       ng-model="ingredient.ScientificFormula"
+                                       ng-maxlength="500"
+                                       ng-disabled="headersaved"
+                                       invalid-message="'Maximum length should be 500 Characters'"
+                                       validate-on="blur"
+                                       required required-message="'Required field'" />
+                            </div>
+                            <div class="form-group">
+                                <label>Scientific Name Synonyms</label>
+                                <input type="text"
+                                       class="form-control input-sm"
+                                       name="IngredientScientificNameSynonyms"
+                                       ng-model="ingredient.ScientificNameSynonyms"
+                                       ng-maxlength="500"
+                                       ng-disabled="headersaved"
+                                       invalid-message="'Maximum length should be 500 Characters'"
+                                       validate-on="blur"
+                                       required required-message="'Required field'" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Family</label>
+                                <input type="text"
+                                       class="form-control input-sm"
+                                       name="IngredientFamily"
+                                       ng-model="ingredient.Family"
+                                       ng-maxlength="500"
+                                       ng-disabled="headersaved"
+                                       invalid-message="'Maximum length should be 500 Characters'"
+                                       validate-on="blur"
+                                       required required-message="'Required field'" />
+                            </div>
+                            <div class="form-group">
+                                <label>Ores</label>
+                                <input type="text"
+                                       class="form-control input-sm"
+                                       name="IngredientOres"
+                                       ng-model="ingredient.Ores"
+                                       ng-maxlength="500"
+                                       invalid-message="'Maximum length should be 500 Characters'"
+                                       validate-on="blur"
+                                       ng-disabled="headersaved"
+                                       required required-message="'Required field'" />
+                            </div>
+                            <div class="form-group">
+                                <label>Source</label>
+                                <input type="text"
+                                       class="form-control input-sm"
+                                       name="IngredientSource"
+                                       ng-model="ingredient.Source"
+                                       ng-maxlength="500"
+                                       invalid-message="'Maximum length should be 500 Characters'"
+                                       validate-on="blur"
+                                       ng-disabled="headersaved"
+                                       required required-message="'Required field'" />
+                            </div>
+                            <div class="form-group">
+                                <label>Primary Use</label>
+                                <input type="text"
+                                       class="form-control input-sm"
+                                       name="IngredientPrimaryUse"
+                                       ng-model="ingredient.PrimaryUse"
+                                       ng-maxlength="500"
+                                       ng-disabled="headersaved"
+                                       invalid-message="'Maximum length should be 500 Characters'"
+                                       validate-on="blur"
+                                       required required-message="'Required field'" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Parts Used</label>
+                                <input type="text"
+                                       class="form-control input-sm"
+                                       name="IngredientPartUsed"
+                                       ng-model="ingredient.PartsUsed"
+                                       ng-maxlength="500"
+                                       invalid-message="'Maximum length should be 500 Characters'"
+                                       validate-on="blur"
+                                       ng-disabled="headersaved"
+                                       required required-message="'Required field'" />
+                            </div>
+                            <div class="form-group">
+                                <label>Controversies</label>
+                                <input type="text"
+                                       class="form-control input-sm"
+                                       name="IngredientControversies"
+                                       ng-model="ingredient.Controversies"
+                                       ng-maxlength="500"
+                                       invalid-message="'Maximum length should be 500 Characters'"
+                                       validate-on="blur"
+                                       ng-disabled="headersaved"
+                                       required required-message="'Required field'" />
+                            </div>
+                            <div class="form-group">
+                                <label>Alerts</label>
+                                <input type="text"
+                                       class="form-control input-sm"
+                                       name="IngredientAlerts"
+                                       ng-model="ingredient.Alerts"
+                                       ng-maxlength="500"
+                                       invalid-message="'Maximum length should be 500 Characters'"
+                                       validate-on="blur"
+                                       ng-disabled="headersaved"
+                                       required required-message="'Required field'" />
+                            </div>
+                            <div class="form-group">
+                                <label>Video Link</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">http://</span>
+                                    <input type="text"
+                                           class="form-control input-sm"
+                                           name="IngredientVideoLink"
+                                           ng-model="ingredient.VideoLink"
+                                           ng-maxlength="500"
+                                           ng-disabled="headersaved"
+                                           invalid-message="'Maximum length should be 500 Characters'"
+                                           validate-on="blur" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea class="form-control"
+                                          name="IngredientDescription"
+                                          ng-model="ingredient.Description"
+                                          ng-maxlength="500"
+                                          invalid-message="'Maximum length should be 500 Characters'"
+                                          validate-on="blur"
+                                          ng-disabled="headersaved"
+                                          required required-message="'Required field'"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="submit"  ng-class="{'btn btn-success btn-flat':headersaved==false,'btn btn-default btn-flat':headersaved==true}" ng-disabled="headersaved"><i class="fa fa-plus glyphicon-margin"></i>Add Ingredient</button>
+                    <a href="#/ingredients/detail" ng-class="{'btn btn-default btn-flat pull-right disable-actions':headersaved==false,'btn btn-info btn-flat pull-right':headersaved==true}" ng-disabled="!headersaved">Details<i class="fa fa-angle-right glyphicon-margin-left" ></i></a>
+                    <a href="#/ingredients" ng-class="{'btn btn-default btn-flat pull-right glyphicon-margin disable-actions':headersaved==false,'btn btn-info btn-flat pull-right glyphicon-margin':headersaved==true}" ng-disabled="!headersaved"><i class="fa fa-angle-left glyphicon-margin"></i>Back</a>
+                </div>
+            </form>
+    </div>
+</div>
+</div>

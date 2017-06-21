@@ -1,0 +1,74 @@
+﻿<!--<div class="alert alert-info alert-dismissable">
+    <a class="panel-close close" data-dismiss="alert">x</a>
+    <i class="fa fa-user-plus fa-2x"></i>
+    Create new Users. Make sure you fill all required fields.
+</div>-->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box box-info" id="div_add_ingredient">
+            <div class="box-header with-border">
+                <h3 class="box-title">Update Asset Types</h3>
+            </div>
+            <form role="form" class="sleek-forms" novalidate angular-validator name="newAssetForm" angular-validator-submit="updateasset()">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="assetCode">Asset Code</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" ng-model="EditedAsset.Atp_Cd" limit-to="5" id="assetCode" name="assetCode" placeholder="Asset Code"
+                                           validate-on="blur" required required-message="'Asset Code is required'" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="salvage">Salvage Value</label>
+                                <input type="number" name="salvage" min="0" class="form-control" ng-model="EditedAsset.Atp_SalvageValue" placeholder="Salvage Value"
+                                       validate-on="blur" required required-message="'Salvage Value is required'">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="assetName">Asset Description</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" ng-model="EditedAsset.Atp_Name" name="assetName" id="assetName" placeholder="Asset Description"
+                                           validate-on="blur" required required-message="'Asset Name is required'">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="depreciation">Depreciation (%)</label>
+                                <div class="form-group">
+                                    <input type="number" min="0" class="form-control" ng-model="EditedAsset.Atp_DeprePer" id="depreciation" name="depreciation" placeholder="Depreciation"
+                                           validate-on="blur" required required-message="'Depreciation is required'">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="email">Category</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" ng-model="EditedAsset.Atp_AssetType" id="category" name="category" placeholder="OTHERS"
+                                           validate-on="blur" required required-message="'Category is required'">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="usefullife">Useful Life [Year(s)]</label>
+                                <div class="form-group">
+                                    <input type="text" ng-model="EditedAsset.Atp_DeprePer" class="form-control" id="usefullife" name="usefullife" placeholder="Useful Life"
+                                           validate-on="blur" required required-message="'Mobile phone is required'" disabled="disabled">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <input type="submit" name="submit" id="submit" value="Update" class="btn btn-info pull-right">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

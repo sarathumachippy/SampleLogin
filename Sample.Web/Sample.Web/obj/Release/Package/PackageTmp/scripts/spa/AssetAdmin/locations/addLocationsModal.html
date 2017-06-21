@@ -1,0 +1,34 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        New Location 
+    </div>
+    <div class="panel-body">
+        <form role="form" novalidate angular-validator name="EditUserForm" angular-validator-submit="Register()">
+            <div class="">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="control-label" for="DeptName">Name</label>
+                            <input type="text" class="form-control" ng-model="EditedLoc.Loc_Name" name="Loc_Name" id="Loc_Name" placeholder="Location Name"
+                                   validate-on="blur" required required-message="'Location Name is required'">
+                        </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-xs-6 selectContainer">
+                            <label class="control-label" for="LocCode">Code</label>
+                            <input type="text" class="form-control" ng-model="EditedLoc.Loc_Cd" name="Loc_Cd" id="Loc_Cd" placeholder="Location Code"
+                                   validate-on="blur" required required-message="'Location code is required'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            <button type="button" class="btn btn-danger" ng-click="cancelEdit()">Cancel</button>
+            <button type="button" class="btn btn-primary" ng-click="addData()">Add</button>
+        </div>
+    </div>
+</div>

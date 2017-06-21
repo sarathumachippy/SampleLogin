@@ -1,0 +1,31 @@
+﻿<div>
+    <div class="row">
+        <div class="col-md-4">
+            <input type="text" ng-model="filter" ng-change="filterCustomer()" esc-key="hideCustomerList()" />
+        </div>
+    </div>
+    <div class="row" ng-show="customers && customers.length>0">
+        <div class="col-md-8" style="overflow:auto; height:300px">
+            <div class="panel panel-primary">
+                <table class="table table-striped mycursor">
+                    <thead>
+                        <tr>
+                            <th ng-show="false"></th>
+                            <th class="bg-aqua-active">First Name</th>
+                            <th class="bg-aqua-active">Last Name</th>
+                            <th class="bg-aqua-active">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="customer in customers" ng-click="selected(customer)">
+                            <td ng-show="false">{{customer.ID}}</td>
+                            <td>{{customer.FirstName}}</td>
+                            <td>{{customer.LastName}}</td>
+                            <td>{{customer.Email}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,757 @@
+﻿<div ng-init="loadAssetPurchRegister()" style="background-image: url(../img/mybgd.jpg) !important;" class="box-shadow">
+    <form action="" role="form" class="form-horizontal sleek-forms" novalidate name="assetRegRegForm">
+        <div ng-app="myApp" ng-controller="asset.admin.assetRegister.ctrl as tab">
+
+            <div class="box-header with-border" style="border:none">
+                <h3 class="box-title" ng-hide="assetRegister.ID!=undefined">New Asset Register</h3>
+                <h3 class="box-title" ng-show="assetRegister.ID!=undefined">Edit Asset : {{assetRegister.Ast_Id}}</h3>
+            </div>
+
+            <ul class="nav nav-tabs" style="border:none">
+                <li ng-class="{active:tab.isSet(1)}"><a ng-disabled="assetRegisterRegForm.$invalid" ng-click="tab.setTab(1)">General</a></li>
+                <li ng-class="{active:tab.isSet(2)}"><a ng-disabled="assetRegisterRegForm.$invalid" ng-click="tab.setTab(2)">Purchase & Valuation</a></li>
+                <li ng-class="{active:tab.isSet(3)}"><a ng-disabled="assetRegisterRegForm.$invalid" ng-click="tab.setTab(3)">Allocation</a></li>
+                <li ng-class="{active:tab.isSet(4)}"><a ng-disabled="assetRegisterRegForm.$invalid" ng-click="tab.setTab(4)">Other Information</a></li>
+                <li ng-class="{active:tab.isSet(5)}"><a ng-disabled="assetRegisterRegForm.$invalid" ng-click="tab.setTab(5)">Images</a></li>
+                <li ng-class="{active:tab.isSet(6)}"><a ng-disabled="assetRegisterRegForm.$invalid" ng-click="tab.setTab(6)">Documents</a></li>
+            </ul>
+            <!--Tab 1-->
+            <div ng-show="tab.isSet(1)">
+                <div class="container-fluid main">
+                    <div class=" main">
+                        <div class="col-lg-6 main">
+                            <div>
+                                <div class="form-group" ng-class="{ 'has-error' : assetRegRegForm.assetId.$invalid && (assetRegRegForm.assetId.$dirty || submitted)}">
+                                    <label class="control-label   col-sm-3 text-str" for="assetId">Asset ID</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="" name="assetId" class="form-control" placeholder="Asset ID" ng-model="assetRegister.Ast_Id" uppercase-only ng-required="true" ng-disabled="true">
+                                    </div>
+
+                                    <div ng-show="assetRegRegForm.assetId.$error.required && (assetRegRegForm.assetId.$dirty || submitted)" class="help-block">Asset Id is required.</div>
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error' : assetRegRegForm.assetName.$invalid && (assetRegRegForm.assetName.$dirty || submitted)}">
+                                    <label class="control-label   col-sm-3 text-str" for="assetName">Name</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="lname" name="assetName" ng-model="assetRegister.Ast_Name" maxlength="50" class="form-control" placeholder="Name" ng-required="true" uppercase-only>
+                                    </div>
+                                    <div class="col-sm-1 mandetary "></div>
+                                    <div style=" margin-top: 36px; margin-left: 13px;" ng-show="assetRegRegForm.assetName.$error.required && (assetRegRegForm.assetName.$dirty || submitted)" class="help-block">Asset Name is required.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-3 text-str" for="GI.A/c">GI.A/c</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="GiAc" ng-blur="CheckGl(assetRegister.Gl_AcCd);" placeholder="Search GI.A/c" ng-required="true" uppercase-only easy-complete=""
+                                               ng-model="assetRegister.Gl_AcCd"
+                                               ec-template="headerGiAc"
+                                               ec-showheader="true"
+                                               ec-valueholder="assetRegister.Ac_Desc"
+                                               ec-transport="loadGiAc" ng-disabled="assetRegister.ID!=undefined" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-3 text-str" for="Owner Ship">Ownership</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="ownership" ng-blur="CheckOwnership(assetRegister.OWS_Cd);" placeholder="Search OwnerShip" uppercase-only easy-complete=""
+                                               ng-model="assetRegister.OWS_Cd"
+                                               ec-template="ownership"
+                                               ec-showheader="true"
+                                               ec-valueholder="assetRegister.OWS_Name"
+                                               ec-transport="loadOwnership" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-3 text-str" for="Status">Status</label>
+                                    <div class="col-sm-8">
+                                        <select id="" name="Status" class="second" ng-model="assetRegister.Ast_Status">
+                                            <option value="ACTIVE"> ACTIVE</option>
+                                            <option value="INACTIVE">INACTIVE </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-3 text-str" for="Description">Description</label>
+                                    <div class="col-sm-8">
+                                        <textarea id="" name="Description" placeholder="Description" class="second" ng-model="assetRegister.Ast_Desc" placeholder="Description" style="resize:none"></textarea>
+                                    </div>
+                                    <div class="col-sm-1 mandetary "></div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" ng-model="assetRegister.defaultDep" ng-click="AddAssetItem();" style="margin-left:152px;" /><label for="Department">Default Department</label>
+                                    <input type="checkbox" ng-model="assetRegister.defaultLoc" ng-click="AddAssetItem();" /><label for="Location">Default Location</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 main">
+                            <div>
+                                <div class="form-group">
+
+                                    <label class="control-label   col-sm-3 text-str" for="Expiry">Expiry Date</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Expiry Date" name="WarrantyDate" pickdate="" ng-readonly="true" ng-model="assetRegister.Ast_Warranty_Dt" ng-required="true" ng-disabled="assetRegister.ID!=undefined" />
+                                    </div>
+                                    <div class="col-sm-1 mandetary "></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-3 text-str" for=" warranty info">Warranty Info</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="" name="Warranty Info" class="second" maxlength="50" ng-model="assetRegister.Ast_Warranty_Info" style=" margin-bottom: 10px;" placeholder="Warranty Info">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <label class="control-label   col-sm-6 text-str" for="Make" style="padding-left:0px;">Make</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" id="" name="Make" class="second" maxlength="15" ng-model="assetRegister.Ast_Make" placeholder="Make">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="control-label   col-sm-5 text-str" for="Engine No">Engine NO</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" id="" name="Engine No" maxlength="20" class="second" ng-model="assetRegister.Ast_Engine" placeholder="Engine NO">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <label class="control-label   col-sm-6 text-str" for="Model" style="padding-left:0px;">Model</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" id="" name="Model" class="second" maxlength="15" ng-model="assetRegister.Ast_Model" placeholder="Model">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="control-label   col-sm-5 text-str" for="Chasis No">Chasis No</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" id="" name="Chasis No" class="second" maxlength="20" ng-model="assetRegister.Ast_Chasis" placeholder="Chasis No">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-3 text-str" for="Type">Type</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="Type" placeholder="Search Type" uppercase-only easy-complete="" ng-model="assetRegister.Atp_Cd"
+                                               ec-template="assetType"
+                                               ec-showheader="true"
+                                               ec-onchange="getAssetIdEvent"
+                                               ec-valueholder="assetRegister.Atp_Name"
+                                               ec-transport="loadAssetType" />
+                                    </div> <div class="col-sm-1 mandetary "></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-3 text-str" for="Asname">Components</label>
+                                    <div class="col-sm-9">
+                                        <textarea id="" name="comp" class="second" maxlength="400" ng-model="assetRegister.Ast_Components" placeholder="Components" style="resize:none"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Tab 2-->
+            <div ng-show="tab.isSet(2)">
+                <div class="container-fluid main">
+                    <div class=" main">
+                        <div class="col-lg-6 main">
+                            <div class="main">
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-3 text-str" for="P.Order Ref">P.Order Ref</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="P.Order Ref" maxlength="30" class="form-control" placeholder="P.Order Ref" ng-model="assetRegister.Ast_Po_Ref" ng-required="true" ng-disabled="assetRegister.ID!=undefined">
+                                    </div>
+
+                                </div>
+                                <!--<div class="form-group" ng-class="{ 'has-error' : assetRegRegForm.PurchaseDate.$invalid && (assetRegRegForm.PurchaseDate.$dirty || submitted)}">
+                                    <label for="PurchaseDate">Purchase Date</label>
+                                    <p class="input-group">
+                                        <input type="text" class="form-control" name="PurchaseDate" datepicker-popup="{{format}}" ng-model="assetRegister.Ast_Purch_Dt" is-open="datepicker.opened" datepicker-options="dateOptions" ng-required="true" datepicker-append-to-body="true" close-text="Close" ng-disabled="assetRegister.ID!=undefined" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                                    </p>
+                                    <div ng-show="assetRegRegForm.PurchaseDate.$error.required && (assetRegRegForm.PurchaseDate.$dirty || submitted)" class="help-block">Purachase date is required.</div>
+                                </div>-->
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-3 text-str" for="PurchaseDate">Purchase Date</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Purchase Date" pickdate="" ng-readonly="true" ng-change="CalNetDepreciation();" name="PurchaseDate" ng-model="assetRegister.Ast_Purch_Dt" ng-required="true" />
+                                    </div><div class="col-sm-1 mandetary "></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-3 text-str" for="Purchase Ref">Purchase Ref</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="Purchase Ref" maxlength="30" class="second" placeholder="Purchase Ref" ng-model="assetRegister.Ast_Purch_Ref">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-3 text-str" for=" supplier">Supplier</label>
+                                    <div class="col-sm-8">
+                                        <select name="Supplier" class="second">
+                                            <option value="{{assetRegister.Sup_Cd}}" selected="selected">{{assetRegister.Sup_Cd}}</option>
+                                            <!--  <option ng-repeat="supplier in supplierList" value="{{supplier.AC_CD}}">{{supplier.AC_CD}} </option>-->
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <!--</div>ng-class="{ 'has-error' : assetRegRegForm.SupplierName.$invalid && (assetRegRegForm.SupplierName.$dirty || submitted)}">-->
+                                    <label class="control-label   col-sm-3 text-str" for="Name">SupplierName</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="Name" class="form-control" placeholder="Name" ng-model="assetRegister.Sup_Name" ng-required="true" ng-disabled="true" uppercase-only>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-3 text-str" for="Status">Address</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="Address" class="form-control" placeholder="Address" ng-model="assetRegister.Sup_Add1" ng-disabled="true" uppercase-only>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="control-label   col-sm-6 text-str" for="Model">Purchase Rate</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" name="Purchase Rate" placeholder="Purchase Rate" class="numeric-aling second" ng-change="calcPurchValue()" ng-model="assetRegister.Ast_Purch_Rate" ng-required="true" ng-disabled="assetRegister.ID!=undefined" numbers-only>
+                                            </div>
+                                            <div class="col-sm-1 mandetary "></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label   col-sm-7 text-str" for="Quantity Type">Quantity Type</label>
+
+                                            <input type="radio" class="radioBtnClass" name="option" checked ng-disabled="assetRegister.ID!=undefined" ng-click="calcPurchValue()" value="S" ng-model="assetRegister.option" /><label for="option">Single</label><br />
+                                            <input type="radio" class="radioBtnClass" name="option" ng-disabled="assetRegister.ID!=undefined" value="M" ng-model="assetRegister.option" style="margin-left: 144px;" /><label for="option" style="margin-bottom :12px;">Multiple</label><br />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label  col-sm-6 text-str" for="Purchase Quantity">Purchase Qty</label>
+                                            <div class="col-sm-5">
+                                                <input type="text" name="Purchase Quantity" only-numbers class="numeric-aling second" ng-change="calcPurchValue()" placeholder="Purchase Quantity" ng-model="assetRegister.Ast_Qty" ng-disabled="true" ng-hide="assetRegister.option!='S'">
+                                                <input type="text" name="Purchase Quantity" only-numbers class="numeric-aling second" ng-change="calcPurchValue()" placeholder="Purchase Quantity" ng-model="assetRegister.Ast_Qty" ng-show="assetRegister.option!='S'" ng-disabled="assetRegister.ID!=undefined">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label   col-sm-6 text-str" for=" purchase value">Purchase Value</label>
+                                            <div class="col-sm-5">
+                                                <input type="text" name="Purchase Value" placeholder="Purchase Value" class="numeric-aling second" ng-model="assetRegister.Ast_Purch_Value" ng-required="true" ng-disabled="true">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="control-label   col-sm-3 text-str" for="Disc.%">Disc.%</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" name="Disc.%" class="numeric-aling second " placeholder="Disc" ng-change="calcDiscAmount();" numbers-only ng-model="assetRegister.Ast_PurchDisc_Perc" ng-required="true" ng-disabled="assetRegister.ID!=undefined">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label   col-sm-3 text-str" for="Disc.Amt">Disc.Amt</label>
+                                            <!--<input type="number" name="Disc.Amt" class="second" ng-model="assetRegister.Ast_PurchDisc_Amt" placeholder="Disc.Amt" ng-required="true" ng-disabled="assetRegister.ID!=undefined">-->
+                                            <div class="col-sm-7">
+                                                <input type="text" name="Purchase Value" class="numeric-aling second" placeholder="Disc.Amt" ng-change="calcPurchValue()" ng-model="assetRegister.Ast_PurchDisc_Amt" ng-required="true" numbers-only ng-disabled="assetRegister.ID!=undefined" style="margin-bottom:30px">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 main">
+                            <div class="main">
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-3 text-str" for="Asname">Method</label>
+                                    <div class="col-sm-9">
+                                        <select id="" name="Type" class="second">
+                                            <option value="" selected="selected">Straight Line</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="control-label   col-sm-6 text-str" for="">Salvage Value</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="Salvage Value" placeholder="Salvage Value" class="numeric-aling second" numbers-only ng-model="assetRegister.Ast_SalvageValue" ng-required="true" ng-disabled="assetRegister.ID!=undefined">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label   col-sm-6 text-str" for=" ">Depreciation(%)</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" id="" name="Depreciation(%)" class="numeric-aling second" placeholder="0.000" ng-change="calcusefullife();" ng-model="assetRegister.Ast_DeprePer">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label   col-sm-6 text-str" for=" ">Net Depreciation</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" id="" name="Net Depreciation" class="numeric-aling second" placeholder="0.000" placeholder="Net Depreciation" ng-model="assetRegister.Ast_TotDepre" ng-required="true" ng-disabled="assetRegister.ID!=undefined">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <label class="control-label   col-sm-6 text-str" for=" model">Book Value</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" id="" name="Book Value" class="numeric-aling second" placeholder="0.000" ng-model="assetRegister.Ast_Book_Value" ng-required="true" ng-disabled="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="control-label   col-sm-7 text-str" for="">Useful Life Years</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" name="Usful Life[Yers(s)]" class="numeric-aling second" ng-model="assetRegister.Ast_UsefulLife" ng-required="true" ng-disabled="true" style="width:79px;">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="control-label   col-sm-5 text-str" for="">open</label>
+                                            <div class="col-sm-5">
+                                                <label class="control-label     text-str" for="">{{assetRegister.Asv_Acq_Dt}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="control-label   col-sm-5 text-str" for="">open</label>
+                                            <div class="col-sm-5">
+                                                <label class="control-label     text-str" for="">{{assetRegister.Asv_Acq_Dt}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-3 text-str" for="Expiry">Finance Co.</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="Finace Co." class="second" maxlength="30" placeholder="Finance Co" ng-model="assetRegister.Ast_FinanceCo">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="control-label   col-sm-6 text-str" for="Model">Installment</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="Installment" maxlength="9" only-numbers placeholder="Installment" class="second" ng-model="assetRegister.Ast_Installment">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="control-label   col-sm-5 text-str" for="Chasis No">Interest(%)</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" name="CInterest(%)" class="second" placeholder="Interest" numbers-only ng-model="assetRegister.Ast_IntRate">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-4 text-str" for="Model">Last Installment Due</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" name="Last Installment Due" class="second" pickdate="" ng-readonly="true" placeholder="Last Installment Due" ng-model="assetRegister.Ast_LastInst_DueDt">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Tab 3-->
+            <div ng-show="tab.isSet(3)">
+                <div class="container-fluid main">
+                    <div class=" main">
+                        <div style="height:350px; overflow-x: hidden; overflow-y: auto;">
+                            <table class="table-stripd table-bordered sequential-control data">
+                                <tr class="tr-top rwsp" style="height: 5px; background-color: white; ">
+                                    <th class="Hdstyl">Prd SrNo<div class="col-sm-1 mandetary " style="float:right"></div></th>
+                                    <th class="Hdstyl">Department<div class="col-sm-1 mandetary " style="float:right"></div></th>
+                                    <th class="Hdstyl">Location<div class="col-sm-1 mandetary " style="float:right"></div></th>
+                                    <th class="Hdstyl">Employee</th>
+                                    <th class="Hdstyl">Customer</th>
+                                    <th class="Hdstyl">CustLocation</th>
+                                    <th class="Hdstyl" style="">Action</th>
+                                </tr>
+                                <tr style="height:5px;">
+                                    <td class="tstyle " style="width: 120px;">
+                                        <input type="text" ng-model="item1.Ast_SlNo" placeholder="Prd SrNo" class="numeric-aling" maxlength="5" style="width: 100%; ">
+                                    </td>
+                                    <td class="tstyle ">
+                                        <input style="width: 44px;" type="text" easy-complete="" placeholder="Dep Id"
+                                               ng-model="item1.Ds_Id"
+                                               ec-template="headerDepartment"
+                                               ec-showheader="true"
+                                               ec-valueholder="item1.Dept_Name"
+                                               ec-transport="loadDepartment" uppercase-only />
+                                        <!--   <label class="custom-light">{{item1.Dept_Name}}</label>-->
+                                        <input type="text" name="lname" ng-model="item1.Dept_Name" size="11" disabled style="width:65%">
+                                    </td>
+                                    <td class="tstyle ">
+                                        <input style="width: 44px;" type="text" easy-complete="" placeholder="Loc Id"
+                                               ng-model="item1.Loc_Cd"
+                                               ec-template="headerLocation"
+                                               ec-showheader="true"
+                                               ec-valueholder="item1.Loc_Name"
+                                               ec-transport="loadLocation" uppercase-only />
+                                        <input type="text" name="lname" ng-model="item1.Loc_Name" size="11" disabled style="width:65%">
+                                    </td>
+                                    <td class="tstyle ">
+                                        <input style="width: 44px;" type="text" easy-complete="" placeholder="Emp Id"
+                                               ng-model="item1.Emp_Cd"
+                                               ec-template="headerEmployee"
+                                               ec-showheader="true"
+                                               ec-valueholder="item1.Emp_Name"
+                                               ec-transport="loadEmployee" uppercase-only />
+                                        <input type="text" name="lname" ng-model="item1.Emp_Name" size="11" disabled style="width:65%">
+                                    </td>
+                                    <td class="tstyle ">
+                                        <input style="width: 44px;" type="text" easy-complete="" placeholder="Cust Id"
+                                               ng-model="item1.AC_CD"
+                                               ec-template="headerCustomer"
+                                               ec-showheader="true"
+                                               ec-valueholder="item1.AC_DESC"
+                                               ec-transport="loadCustomer" uppercase-only />
+                                        <input type="text" name="lname" ng-model="item1.AC_DESC" size="11" disabled style="width:65%">
+                                    </td>
+                                    <td class="tstyle ">
+                                        <input style="width: 44px;" type="text" easy-complete="" placeholder="Cust Loc"
+                                               ng-model="item1.CustLoc_Cd"
+                                               ec-template="headerCustLocation"
+                                               ec-showheader="true"
+                                               ec-valueholder="item1.CustLoc_Name"
+                                               ec-transport="loadCustLocation" uppercase-only />
+                                        <input type="text" name="lname" ng-model="item1.CustLoc_Name" size="11" disabled style="width:65%">
+                                    </td>
+                                    <td class="tstyle " style="width:100px">
+                                        <button class="btn btn-danger grid-save-round-btn" ng-click="clearValues($event)" title="Clear" id="" style="font-size: 20px; background: #ED9E9E; color: #C90000;"><i class="glyphicon glyphicon-circle-arrow-left"></i></button>
+                                        <button class="btn btn-success grid-save-round-btn" data-id="A" title="Save" ng-click="addUpdateItem1($event)"><i class="glyphicon glyphicon-plus-sign "></i></button>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat="newitem in assetRegister.list" style="height:50px;">
+                                    <td style="padding-left:10px;">{{newitem.Ast_SlNo}}</td>
+                                    <td class="tstyle">{{newitem.Dept_Name | limitTo:23}}</td>
+                                    <td class="tstyle">{{newitem.Loc_Name | limitTo:23}}</td>
+                                    <td class="tstyle">{{newitem.Emp_Name | limitTo:23}}</td>
+                                    <td class="tstyle">{{newitem.AC_DESC | limitTo:23}}</td>
+                                    <td class="tstyle">{{newitem.CustLoc_Name | limitTo:23}}</td>
+                                    <td class="tstyle round-btn-holder">
+                                        <button ng-click="updateListItem(newitem,$index)" class="btn btn-default trans-round-btn" type="button" title="Edit"><i class="glyphicon glyphicon-pencil"></i></button>
+                                        <button ng-click="deleteListitem(newitem,$index)" class="btn btn-default trans-round-btn" type="button" title="Delete"><i class="glyphicon glyphicon-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr></tr>
+                            </table>
+
+                        </div>
+                    </div>
+                    <!--<div class="col-lg-12 main">
+                        <div class="row main">
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label for="Fill Value">Fill Value</label>
+                                        <select id="" name="Fill Value" class="second">
+                                            <option value=""></option>
+                                            <option value=""></option>
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label style="margin-bottom:17px;"></label>
+                                        <button class="second">Fill Selection</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+            <!--Tab 4-->
+            <div ng-show="tab.isSet(4)">
+
+                <div class="container-fluid main box-shadow">
+                    <div class=" main">
+                        <div class="col-lg-4 main">
+                            <div class="main">
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-4 text-str" for="Reg. No.">Reg. No. </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="" ng-disabled="true" placeholder="Reg.No" name="Reg. No." class="second">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-4 text-str" for="Expiry Date">Expiry Date </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="" ng-disabled="true" pickdate="" ng-readonly="true" name="Expiry Date" placeholder="Expiry Date" class="form-control" ng-model="assetRegister.expDate">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-4 text-str" for="Reg. Date">Reg. Date </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="" ng-disabled="true" pickdate="" ng-readonly="true" placeholder="Reg Date" ng-model="assetRegister.RegDate" name="Reg. Date" class="form-control"><br /><br />
+                                    </div>
+                                </div>
+                                <label for="Insurance Details" class="splHeader">Insurance Details</label><br /><br />
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-4 text-str" for="Policy No.">Policy No. </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="" ng-disabled="true" placeholder="Policy No" name="Policy No." class="second">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-4 text-str" for="Company">Company</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="" ng-disabled="true" placeholder="Company" name="Company" class="second">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-4 text-str" for="Ins. Date">Ins. Date</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="" ng-disabled="true" pickdate="" ng-readonly="true" placeholder="Ins Date" ng-model="assetRegister.insDate" name="Ins. Date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label   col-sm-4 text-str" for="Expiry Date">Expiry Date</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="" ng-disabled="true" pickdate="" ng-readonly="true" placeholder="Expiry Date" ng-model="assetRegister.insExpDate" name="Expiry Date" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 main">
+                            <div class="main">
+                                <div class="col-lg-6 main">
+                                    <div class="form-group">
+                                        <label class="control-label   col-sm-4 text-str " for="Depreciation" style="width:169px">Depreciation </label>
+                                        <div class="col-sm-5">
+                                            <!-- <select class="second" style="width:100%">..Select...</select>-->
+                                            <input class="form-control" type="text" easy-complete=""
+                                                   ng-model="assetRegister.DerpAC_CD"
+                                                   ec-template="headerGetDepAc"
+                                                   ec-showheader="true"
+                                                   ec-valueholder="assetRegister.DepreciationName"
+                                                   ec-transport="loadGetDepAc" uppercase-only placeholder="Search Depreciation" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label   col-sm-4 text-str" for="Expiry Date" style="width:169px">Provision For Depreciation</label>
+                                        <div class="col-sm-5">
+                                            <!-- <select class="second" style="width:100%">..Select...</select>-->
+
+                                            <input class="form-control" type="text" easy-complete=""
+                                                   ng-model="assetRegister.ProvisionAC_CD"
+                                                   ec-template="headerGetDepAc"
+                                                   ec-showheader="true"
+                                                   ec-valueholder="assetRegister.ProvisionName"
+                                                   ec-transport="loadGetDepAc" uppercase-only placeholder="Search Provision Depreciation" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 main">
+
+                                    <div class="form-group">
+
+                                        <div class="col-sm-10">
+                                            <input class="second" type="text" placeholder="Depreciation" ng-disabled="true" ng-model="assetRegister.DepreciationName" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="col-sm-10">
+                                            <input class="second" type="text" placeholder="Provision for Depreciation" ng-disabled="true" ng-model="assetRegister.ProvisionName" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!--Tab 5-->
+            <div ng-show="tab.isSet(5)">
+
+                <div class="container-fluid main box-shadow">
+                    <div>
+                        <div class="row main">
+                            <div class="col-lg-6 main">
+                                <div class="main">
+                                    <h3 style="margin:0px !important; padding-bottom:10px"> Asset Images</h3>
+                                    <p>Number of files selected: {{ uploaderImg.queue.length }}</p>
+
+                                    <div class="col-md-9 box-shadow" style=" height:auto; max-height:140px; overflow-x: hidden; overflow-y: auto;">
+                                        <table class="table table-stripd" style="margin-top:18px;">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width:50px;">Name</th>
+                                                    <th ng-show="uploaderImg.isHTML5">Size</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="item in uploaderImg.queue">
+                                                    <td><strong>{{ item.file.name | limitTo: 22}}</strong></td>
+                                                    <td ng-show="uploaderImg.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+
+                                                    <td nowrap>
+                                                        <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                                            <span class="glyphicon glyphicon-trash"></span> Remove
+                                                        </button>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="col-lg-6 main">
+                                        <div class="main">
+                                            <div class="img_sectio">
+                                                <input type="file" nv-file-select="" uploader="uploaderImg" multiple />
+
+                                                <!-- <button type="button" class="btn btn-danger btn-xs" ng-click="getImage()">
+                                                    <span class="glyphicon glyphicon-trash"></span> Getimagetest
+                                                </button>-->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 main">
+                                <div class="main">
+                                    <div class="col-sm-3 main" style="height: 219px;max-height:217px; width: 175px; overflow-x: hidden; overflow-y: auto;border:1px solid silver; margin-top:7px;">
+                                        <table class=" table-stripd table-bordered sequential-control " style="margin-left:7px;">
+                                            <tr class="tr-top rwsp" style="height:5px;background-color:white; ">
+                                                <th class="Hdstyl">Image Name</th>
+                                                <th class="Hdstyl">Action</th>
+                                            </tr>
+                                            <tr ng-repeat="imgItem in assetRegister.ImgList" style="height:2px;" ng-click="ClickAssetImage(imgItem.Ast_Id,imgItem.Image_Name)">
+                                                <td class="tstyle" style="cursor: pointer;">{{imgItem.Image_Name}}</td>
+                                                <td class="tstyle round-btn-holder">
+                                                    <button ng-click="deleteImage(imgItem,$index)" class="btn btn-default trans-round-btn" type="button" title="Delete"><i class="glyphicon glyphicon-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div class="col-sm-3 main" style="width: 230px; overflow: hidden; height: 230px;">
+                                        <img ng-src="{{ImageUrl}}" class="image_contain" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!--Tab 6-->
+            <div ng-show="tab.isSet(6)">
+
+                <div class="container-fluid main box-shadow">
+                    <div>
+                        <div class="row main">
+                            <div class="col-lg-6 main">
+                                <div class="main">
+                                    <h3 style="margin:0px !important; padding-bottom:10px"> Asset Documents</h3>
+                                    <p>Number of files selected: {{ uploaderDocs.queue.length }}</p>
+
+                                    <div class="col-md-9 box-shadow" style=" height:auto; max-height:140px; overflow-x :hidden; overflow-y :auto;">
+                                        <table class="table table-stripd" style="margin-top:18px;">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width:50px;">Name</th>
+                                                    <th ng-show="uploaderDocs.isHTML5">Size</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="docItem in uploaderDocs.queue">
+                                                    <td><strong>{{ docItem.file.name | limitTo: 25}}</strong></td>
+                                                    <td ng-show="uploaderDocs.isHTML5" nowrap>{{ docItem.file.size/1024/1024|number:2 }} MB</td>
+
+                                                    <td nowrap>
+                                                        <button type="button" class="btn btn-danger btn-xs" ng-click="docItem.remove()">
+                                                            <span class="glyphicon glyphicon-trash"></span> Remove
+                                                        </button>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="col-lg-6 main">
+                                        <div class="main">
+                                            <div class="img_sectio">
+                                                <input type="file" nv-file-select="" uploader="uploaderDocs" multiple />
+
+                                                <!-- <button type="button" class="btn btn-danger btn-xs" ng-click="getImage()">
+                                                    <span class="glyphicon glyphicon-trash"></span> Getimagetest
+                                                </button>-->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6 main">
+                                <div class="main">
+                                    <div class="col-sm-3 main" style="height: 219px; max-height: 217px; width: 202px; overflow-x: hidden; overflow-y: auto; border: 1px solid silver; margin-top: 7px;">
+                                        <table class=" table-stripd table-bordered sequential-control " style="margin-left:7px;">
+                                            <tr class="tr-top rwsp" style="background-color:white; ">
+                                                <th class="Hdstyl">Document Name</th>
+                                                <th class="Hdstyl">Action</th>
+                                            </tr>
+                                            <tr ng-repeat="docItem in assetRegister.DocList" style="height:2px;" ng-click="ClickAssetDoc(docItem.Ast_Id,docItem.Doc_Name,docItem.Doc_Type)">
+                                                <td class="tstyle" style="cursor: pointer;">{{docItem.Doc_Name}}</td>
+                                                <td class="tstyle round-btn-holder">
+                                                    <button ng-click="deleteDocs(docItem,$index)" class="btn btn-default trans-round-btn" type="button" title="Delete"><i class="glyphicon glyphicon-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div class="col-sm-3 main" style="width: 230px;  overflow: hidden; height: 230px;   ">
+                                        <a href="{{DocUrl}}" download>
+                                            <img border="0" ng-src="{{DocTypeUrl}}" ng-hide="!DocUrl" alt=" Click to downld the file" class="image_contain">
+
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!---->
+
+        </div>
+    </form>
+
+    <div class="asset-register-footer">
+        <div class="col-lg-12">
+            <div class="pull-left">
+                <button type="button" class="btn btn-default" ng-click="closeModal()" ng-disabled="assetRegisterRegForm.$invalid">Cancel</button>
+
+            </div>
+            <div class="pull-right">
+                <button type="button" class="btn btn-primary" ng-click="createAssetRegister(assetRegister)" ng-disabled="assetRegisterRegForm.$invalid">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

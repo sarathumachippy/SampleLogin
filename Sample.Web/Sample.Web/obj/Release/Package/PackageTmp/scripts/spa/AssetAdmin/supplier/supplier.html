@@ -1,0 +1,152 @@
+﻿
+
+<div ng-init="loadSupplier()">
+    <div>
+        <form role="form" class="form-horizontal sleek-forms" novalidate name="supplierForm">
+            <div class="box-header with-border" style="border:none;">
+                <h3 class="box-title" ng-hide="supplier.ID!=undefined">New Supplier</h3>
+                <h3 class="box-title" ng-show="supplier.ID!=undefined">Edit Supplier : {{supplier.AC_DESC}}</h3>
+            </div>
+            <section>
+                <div class="container-fluid rwa">
+
+                    <div class="col-lg-12 rwa box-shadow">
+                        <div class=" rwa">
+                            <div class="col-lg-6 rwa">
+                                <div class="rwa">
+
+                                    <div class="form-group" ng-class="{ 'has-error' : supplierForm.AcCd.$invalid && (supplierForm.AcCd.$dirty || submitted)}">
+                                        <label class="control-label   col-sm-2 text-str" for="AcCd">A/c Code</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="supplier.AC_CD" name="AcCd" placeholder="Account Code" ng-required="true" ng-disabled="supplier.ID!=undefined" uppercase-only />
+                                        </div>
+                                        <div class="col-sm-1 mandetary "></div>
+                                        <div style=" margin-top: 36px; margin-left: 13px;" ng-show="supplierForm.AcCd.$error.required && (supplierForm.AcCd.$dirty || submitted)" class="help-block">Account code is required.</div>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error' : supplierForm.Name.$invalid && (supplierForm.Name.$dirty || submitted)}">
+                                        <label class="control-label   col-sm-2 text-str" for="Name">Name</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="txt" ng-model="supplier.AC_DESC" name="Name" placeholder="Supplier Name" ng-required="true" uppercase-only />
+                                        </div>
+                                        <div class="col-sm-1 mandetary "></div>
+                                        <div style=" margin-top: 36px; margin-left: 13px;" ng-show="supplierForm.Name.$error.required && (supplierForm.Name.$dirty || submitted)" class="help-block">Name is required.</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label   col-sm-2 text-str" for="Adrs">Address</label>
+                                        <div class="col-sm-8">
+                                            <textarea name="Address" rows="2" cols="3" ng-model="supplier.ADDRESS1" placeholder="Address" style="resize:none" class="txt"> </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 rwa ">
+                                <div class=" rwa">
+                                    <div class="form-group">
+                                        <label class="control-label   col-sm-2 text-str" for="Group">Group</label>
+                                        <div class="dropdown select " style="width: 100%;">
+                                            <div class="col-sm-9">
+                                                <select name="Group" class="txt">
+                                                    <option value="" selected="selected">PRIMARY LEVEL</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-6">
+                                            <label class="control-label col-sm-4 text-str" for="phone" style="padding-left:0px;">Phone</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" id="" name="Phone" ng-model="supplier.PHONE" placeholder="Phone Number" class="txt">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <label class="control-label col-sm-2 text-str" for="phone">Fax</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="Fax" ng-model="supplier.FAX" placeholder="Fax" class="txt">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2 text-str" for="Emil">Email</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="" name="Email" ng-model="supplier.EMAIL" placeholder="Email" class="txt">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div><div></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 frame-gap">
+                    </div>
+                    <div class="col-lg-12 rwa box-shadow">
+                        <div class=" rwa">
+                            <div class="col-lg-10 rwa ">
+                                <div class="rwa">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2 text-str" for="contact">Contact Person</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="Contact Person" ng-model="supplier.CONTACT" class="txt" placeholder="Contact Person">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2 text-str" for="Payment">Payment Terms</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="Payment Terms" ng-model="supplier.PAY_TERMS" placeholder=" payment terms" class="txt">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2 text-str" for="Payment">Credit Limit</label>
+                                        <div class="col-sm-6">
+                                            <input style="width: 50% !important" type="text" name="Credit Limit" ng-model="supplier.CREDITLIMIT" placeholder="Credit Limit" class="numeric-aling txt" numbers-only>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2 text-str" for="Phone">Credit Period</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="Credit Period" ng-model="supplier.CREDIT_PERIOD" placeholder="Credit Period" class="numeric-aling txt" numbers-only style="width:50% !important">
+                                            <label for="day" class="lblmarg   ">Day(s)</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2 text-str" for="List">Supplier Type</label>
+                                        <div class="col-sm-6">
+                                            <select style="width:50%!important " name="SupplierType" class="txt" ng-model="supplier.AC_TYPE">
+                                                <option value="" selected="selected">--Select Supplier Type--</option>
+                                                <option value="DEALER"> DEALER</option>
+                                                <option value="REATAIL">RETAIL </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <label for="A/c">A/c On hold</label>
+                                    <input type="checkbox" ng-model="supplier.AC_ON_HOLD" ng-true-value="1" ng-false-value="0" name="A/c on hold" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-12 frame-gap">
+                    </div>
+                </div>
+            </section>
+            <div class="col-lg-12" style="padding-bottom:6%">
+                <a href="#/suppliers" class="btn btn-default pull-left">Back</a>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary" ng-click="createSupplier()" ng-hide="supplier.ID!=undefined" ng-disabled="supplierForm.$invalid">Create</button>
+                    <button type="button" class="btn btn-primary" ng-click="updateSupplier()" ng-show="supplier.ID!=undefined" ng-disabled="supplierForm.$invalid">Update</button>
+                </div>
+            </div>
+
+
+
+
+        </form>
+    </div>
+</div>

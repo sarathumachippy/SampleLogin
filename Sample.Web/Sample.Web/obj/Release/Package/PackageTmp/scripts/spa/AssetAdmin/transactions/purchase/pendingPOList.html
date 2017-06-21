@@ -1,0 +1,55 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading panel-heading-modal">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1 class="modal-page-header">Pending PO Details</h1>
+            </div>
+            <div class=" col-lg-6 pull-right">
+                <div class="input-group">
+                    <input type="text" ng-model="filterPOList" class="form-control shortInputSearch" placeholder="search PO Pending Detail...">
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary" ng-click="searchPOList(page);"><i class="glyphicon glyphicon-search"></i></button>
+                        <button class="btn btn-primary" ng-click="clearSearch();"><i class="glyphicon glyphicon-remove-sign"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <center>
+            <img src="../../Scripts/spa/svg/three-dots.svg" class="before-ng-repeat" data-ng-show="busyLoad" />
+        </center>
+        <div class="row">
+            <div class="col-lg-7" style="height:280px;width:auto; overflow-x: hidden; overflow-y: auto;">
+                <table class="table table-striped table-bordered sequential-control" style="margin-top:7px;">
+                    <thead>
+                        <tr>
+                            <td><h6> Order Header</h6></td>
+                            <td><h6>Apo No</h6></td>
+                            <td><h6>Purchase List</h6></td>
+                            <td><h6>Select PO</h6></td>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="role in roleList | filter:filterPOList">
+                        <tr ng-repeat="child in role.children">
+                            <td ng-show="$index==0" class="custom-light"><input style="width: 150px" type="text" ng-model="role.roleName" placeholder="Name" disabled /></td>
+                            <td ng-hide="$index==0" class="custom-light"></td>
+                            <td ng-show="$index==0" class="custom-light"><input style="width: 100px" type="text" ng-model="role.apoNo" placeholder="Name" disabled /></td>
+                            <td ng-hide="$index==0" class="custom-light"></td>
+                            <td class="custom-light"><input style="width: 200px" type="text" ng-model="child.roleName" placeholder="Name" disabled /></td>
+                            <td class="custom-light"><button type="button" class="btn btn-success" ng-click="selectTreeValue(child.roleId,role.apoNo)">Select</button></td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary" ng-click="cancelEdit()">Close</button>
+        </div>
+    </div>
+</div>

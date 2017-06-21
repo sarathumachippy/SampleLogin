@@ -1,0 +1,186 @@
+﻿
+<div class="">
+    <div class="col-lg-12" ng-init="GetTrNo();" style="height:578px; overflow-x: hidden; overflow-y: auto;">
+        <div class="  box-info" id="div_add_ingredient">
+            <div class="box-header with-border" style="border:none">
+                <h3 class="box-title">Asset Write-Off</h3>
+            </div>
+            <form role="form" class="form-horizontal sleek-forms" novalidate angular-validator name="writeoffForm" angular-validator-submit="saveheader()">
+                <div class="box-body box-shadow">
+                    <div class="col-lg-12" style=" margin-top:17px; margin-bottom:23px;">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label  col-sm-3 text-str" style="margin-top:10px">Doc No</label>
+                                <div class="col-sm-4" style="margin-top:10px">
+                                    <input type="text" class="numeric-aling form-control" name="docNo" ng-model="ValueTran.AsvTr_No" ng-disabled="true" />
+                                </div>
+                                <div class="col-sm-1 " style="margin-top:10px">
+                                    <i class="ion-compose edit-doc-indicator" title="Click to  Edit Previous Purchase Entries" ng-click="showWriteOffRecords();" style="margin-left:0px !important;"></i>
+                                </div>
+                                <div class="col-sm-1" style="margin-left:51px;">
+                                    <not-saved-status ng-show="mode=='new'"></not-saved-status>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label  col-sm-3 text-str" for="assetId">Asset Id</label>
+                                <div class="col-sm-9">
+                                    <input type="text" placeholder="Search Asset Id" class="form-control" name="assetId" ng-blur="checkAssetId(ValueTran.Ast_Id)" placeholder="Search Asset Id" ec-onchange="writeOffEvent" ng-model=" ValueTran.Ast_Id" easy-complete="" ec-valueholder="ValueTran.Ast_Name" ec-template="headerAssetId" ec-transport="loadAssetId" ec-showheader="true" ng-messages=false>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label  col-sm-3 text-str">Asset Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control " placeholder="Asset name" ng-model="ValueTran.Ast_Name" ng-required="true" ng-disabled="true" />
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label  col-sm-3 text-str">Remarks</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control " placeholder="Remarks" ng-model="item.Remarks" />
+                                </div>
+                            </div>
+                            <div class=" form-group">
+                                <label class="control-label  col-sm-3 text-str">Reference</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" placeholder="Reference" ng-model="writeOff.Reference" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label  col-sm-3 text-str" for="docdate">Date</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" placeholder="Doc Date" name="docdate" pickdate="" ng-readonly="true" ng-model="ValueTran.AsvTr_Dt" ng-required="true" />
+                                </div>
+                            </div>
+                            <div class="box-shadow" style="width: 100%; height: 120px; padding: 10px; border: 4px solid rgba(255,255,225,.15);">
+                                <div class="form-group">
+                                    <label class="control-label  col-sm-3 text-str">Acquisition Cost  </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" style="width:100%" name="acquisition" class="numeric-aling" placeholder="Acquisition Cost" ng-disabled="true" ng-model="writeOff.Ast_Purch_Rate" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label  col-sm-3 text-str">Purchase Date  </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" style="width:100%" name="purchdate" class="numeric-aling" placeholder="Purchase Date" ng-disabled="true" ng-model="writeOff.Ast_Purch_Dt" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label  col-sm-3 text-str">Useful Life(Years)  </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" style="width:100%" name="usefullife" class="numeric-aling" placeholder="Useful Life" ng-disabled="true" ng-model="writeOff.Ast_UsefulLife" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main box-shadow" style="margin-bottom:68px;">
+                    <div>
+                        <table class="table-stripd data sequential-control table-bordered">
+                            <tr class="tr-top rwsp" style="height: 5px; background-color: white; ">
+                                <th class="Hdstyl">Id.No</th>
+                                <th class="Hdstyl">Asset SlNo</th>
+                                <th class="Hdstyl">Department</th>
+                                <th class="Hdstyl">Location</th>
+                                <th class="Hdstyl">Employee</th>
+                                <th class="Hdstyl" style="">Action</th>
+                            </tr>
+                            <tr style="height:5px;">
+                                <td class="tstyle" style="width: 120px;">
+                                    <!--<select class="respon-width" ng-model=" items" ng-options="items.Ast_Item_Ctr for items in itemList" ng-required="true">
+                                        <option style="display:none" value=""></option>
+                                    </select>-->
+
+                                    <select class="form-control" id="items" ng-model="items" ng-options="c as c.Ast_Item_Ctr for c in itemList track by c.Ast_Item_Ctr"></select>
+
+                                </td>
+                                <td class="tstyle">
+
+                                    <input type="text" class="respon-width" placeholder="Asset SlNo" name="lname" ng-model="items.Ast_SlNo" size="15" disabled>
+
+                                </td>
+                                <td class="tstyle">
+                                    <input type="text" class="respon-width" placeholder="Dep Name" name="lname" ng-model="items.Dept_Name" size="15" disabled>
+
+                                </td>
+                                <td class="tstyle">
+
+                                    <input type="text" class="respon-width" placeholder="Loc Name" name="lname" ng-model="items.Loc_Name" size="15" disabled>
+
+                                </td>
+                                <td class="tstyle">
+
+                                    <input type="text" class="respon-width" placeholder="Emp name" name="lname" ng-model="items.Emp_Name" size="15" disabled>
+
+                                </td>
+
+                                <td class="tstyle" style="width:100px">
+                                    <button class="btn btn-danger grid-save-round-btn" ng-click="clearItem($event)" title="Clear" id="" style="font-size: 20px; background: #ED9E9E; color: #C90000;"><i class="glyphicon glyphicon-circle-arrow-left"></i></button>
+                                    <button class="btn btn-success grid-save-round-btn" data-id="A" title="Save" ng-click="addUpdateItem($event)"><i class="glyphicon glyphicon-plus-sign "></i></button>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="item in itemLst" style="height:50px;">
+                                <td style="padding-left:10px;">{{item.Ast_Item_Ctr}}</td>
+
+                                <td class="tstyle">{{item.Ast_SlNo}}</td>
+                                <td class="tstyle">{{item.Dept_Name}} </td>
+
+                                <td class="tstyle">{{item.Loc_Name}} </td>
+
+                                <td class="tstyle">{{item.Emp_Name}}</td>
+
+                                <td class="tstyle round-btn-holder">
+                                    <button ng-click="updateItem(item,$index)" class="btn btn-default trans-round-btn" type="button" title="Edit"><i class="glyphicon glyphicon-pencil"></i></button>
+                                    <button ng-click="deleteitem(item,$index)" class="btn btn-default trans-round-btn" type="button" title="Delete"><i class="glyphicon glyphicon-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr></tr>
+                        </table>
+
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label   col-sm-6 text-str" style="padding-right:10px;text-align:right !important;">Acquisition Value (Write-off)</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="acqValue" ng-model="writeOff.Ast_Purch_Rate" ng-disabled="true" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label   col-sm-6 text-str" style="text-align: right !important;">Depreciation(write-off)</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" placeholder="Depreciation" name="depreciation" ng-model="writeOff.AsvTr_Dep_Value" ng-disabled="true" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label   col-sm-6 text-str" style="text-align: right !important;">New Salvage Value</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" placeholder="Salvage Value" name="salvageValue" ng-model="item.value" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="button" class="btn btn-default" ng-click="clearAllItems()">Clear</button>
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-primary" ng-click="saveWriteOff()" ng-submit="writeoffForm.$valid && submit()" ng-disabled="writeoffForm.$invalid">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

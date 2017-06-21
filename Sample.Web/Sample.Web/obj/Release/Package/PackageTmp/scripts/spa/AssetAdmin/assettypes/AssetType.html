@@ -1,0 +1,72 @@
+﻿<div class="" ng-init="loadAssetType()">
+    <div class="col-lg-10">
+        <div class="box-shadow box-info">
+            <div class="box-header with-border" style="border:none">
+                <h3 class="box-title" ng-hide="assettype.ID!=undefined">New Asset Type</h3>
+                <h3 class="box-title" ng-show="assettype.ID!=undefined">Edit Asset Type : {{assettype.Atp_Name}}</h3>
+            </div>
+            <form role="form" class="form-horizontal sleek-forms" novalidate name="assetTypeForm">
+                <div class="box-body">
+                    <div class="">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 text-str" for="assetCode">Asset Type Code</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" ng-model="assettype.Atp_Cd" name="assetCode" placeholder="Asset Type Code" limit-to="4" uppercase-only ng-disabled="assettype.ID!=undefined" ng-required="true" />
+                                </div>
+                                <div class="col-sm-1 mandetary "></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 text-str" for="salvage">Salvage 
+                                </label>
+                                <div class="col-sm-7">
+                                    <input name="salvage" class="form-control" ng-model="assettype.Atp_SalvageValue" placeholder="Salvage Value" numbers-only />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 text-str" for="email">Category</label>
+                                <div class="col-sm-7">
+                                    <!--<input type="text" class="form-control" ng-model="assettype.Atp_AssetType" name="category" placeholder="Category" uppercase-only />-->
+                                    <select class="form-control" name="category" ng-model="assettype.Atp_AssetType">
+                                        <option value="VEHICLE">VEHICLE</option>
+                                        <option value="MACHINARIES">MACHINARIES</option>
+                                        <option value="EQUIPMENTS">EQUIPMENTS</option>
+                                        <option value="OTHERS">OTHERS</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 text-str" for="assetName">Asset Type Description</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" ng-model="assettype.Atp_Name" name="assetName" placeholder="Asset Type Description" uppercase-only />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 text-str" for="depreciation">Depreciation (%)</label>
+                                <div class="col-sm-7">
+                                    <input class="form-control" ng-model="assettype.Atp_DeprePer" name="depreciation" placeholder="Depreciation" numbers-only />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 text-str" for="usefullife" >Useful Life [Year(s)]</label>
+                                <div class="col-sm-7">
+                                    <input type="number" disabled="disabled" ng-value=calcUsefulYears() class="form-control" name="usefullife" placeholder="Useful Life" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-12">
+                            <a href="#/assettypes" class="btn btn-default pull-left">Back</a>
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-primary" ng-click="register()" ng-hide="assettype.ID!=undefined" ng-disabled="assetTypeForm.$invalid">Create</button>
+                                <button type="button" class="btn btn-primary" ng-click="updateAssetType()" ng-show="assettype.ID!=undefined" ng-disabled="assetTypeForm.$invalid">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

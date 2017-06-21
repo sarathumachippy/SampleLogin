@@ -1,0 +1,6 @@
+E:\_Demo\QBSProject.Web\QBSProject.Web\bin\QBSProject.Web.dll.config
+E:\_Demo\QBSProject.Web\QBSProject.Web\bin\QBSProject.Web.dll
+E:\_Demo\QBSProject.Web\QBSProject.Web\bin\QBSProject.Web.pdb
+E:\_Demo\QBSProject.Web\QBSProject.Web\obj\Debug\QBSProject.Web.csprojResolveAssemblyReference.cache
+E:\_Demo\QBSProject.Web\QBSProject.Web\obj\Debug\QBSProject.Web.dll
+E:\_Demo\QBSProject.Web\QBSProject.Web\obj\Debug\QBSProject.Web.pdb

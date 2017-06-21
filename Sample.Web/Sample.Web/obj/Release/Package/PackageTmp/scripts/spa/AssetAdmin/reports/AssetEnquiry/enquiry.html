@@ -1,0 +1,215 @@
+﻿
+<div class="col-lg-12">
+    <form role="form" class=" form-horizontal sleek-forms" novalidate name="AssetEnquiryForm">
+        <div class=" box-info">
+            <div class="box-header with-border" style="border:none">
+                <h3 class="box-title">Asset Enquiry</h3>
+            </div>
+            <div class="box-body box-shadow">
+                <div class="">
+                    <div class="col-lg-6" style=" padding-top: 10px; padding-bottom: 10px;">
+                        <div class="form-group">
+                            <label class="control-label   col-sm-2 text-str" style="margin-top:10px">Ownership</label>
+                            <div class="col-sm-8" style="margin-top:10px">
+                                <input type="text" class="form-control" name="ownership" placeholder="Search OwnerShip" uppercase-only easy-complete=""
+                                       ng-model="enquiry.OWS_Cd"
+                                       ec-template="ownership"
+                                       ec-showheader="true"
+                                       ec-valueholder="enquiry.OWS_Name"
+                                       ec-transport="loadOwnership" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label   col-sm-2 text-str">Asset Type</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="Type" placeholder="Search Type" uppercase-only easy-complete="" ng-model="enquiry.Atp_Cd"
+                                       ec-template="assetType"
+                                       ec-showheader="true"
+                                       ec-valueholder="enquiry.Atp_Name"
+                                       ec-transport="loadAssetType" />
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label   col-sm-2 text-str">Asset Code</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="assetId" placeholder="Search Asset Id" validate-on="blur" ng-model=" enquiry.Ast_Id" easy-complete="" ec-valueholder="item.Ast_Name" ec-template="headerAssetId" ec-transport="loadAssetId" ec-showheader="true"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label   col-sm-2 text-str">Department</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text" placeholder="Search Department" easy-complete=""
+                                       ng-model="enquiry.Ds_Id"
+                                       ec-template="headerDepartment"
+                                       ec-showheader="true"
+                                       ec-valueholder="enquiry.Dept_Name"
+                                       ec-transport="loadDepartment" uppercase-only />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label   col-sm-2 text-str">Location</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text" placeholder="Search Location" easy-complete=""
+                                       ng-model="enquiry.Loc_Cd"
+                                       ec-template="headerLocation"
+                                       ec-showheader="true"
+                                       ec-valueholder="enquiry.Loc_Name"
+                                       ec-transport="loadLocation" uppercase-only />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style=" padding-top: 20px; padding-bottom: 10px;">
+                        <div class="form-group">
+                            <label class="control-label   col-sm-3 text-str" for="docdate">Employee</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text" placeholder="Search Employee" easy-complete=""
+                                       ng-model="enquiry.Emp_Cd"
+                                       ec-template="headerEmployee"
+                                       ec-showheader="true"
+                                       ec-valueholder="enquiry.Emp_Name"
+                                       ec-transport="loadEmployee" uppercase-only />
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label   col-sm-3 text-str">Customer</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" placeholder="Search Customer" type="text" easy-complete=""
+                                       ng-model="enquiry.AC_CD"
+                                       ec-template="headerCustomer"
+                                       ec-showheader="true"
+                                       ec-valueholder="enquiry.AC_DESC"
+                                       ec-transport="loadCustomer" uppercase-only />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label   col-sm-3 text-str">Supplier</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="supplier" placeholder="Search Supplier" uppercase-only easy-complete=""
+                                       ng-model="enquiry.Sup_Cd"
+                                       ec-template="headerSuppliers"
+                                       ec-showheader="true"
+                                       ec-valueholder="enquiry.AC_DESC"
+                                       ec-transport="loadSupplier" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label   col-sm-3 text-str">Purchase date</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="" pickdate="" name="Purchase date" placeholder="Purchase date" class="form-control" ng-model="enquiry.purchdate">
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-11 " style="margin-top:10px;">
+                                    <button type="button" class="btn btn-success" ng-click="GetAssetDetails(enquiry);" style="float: right; margin-right:10px;">Load<i class="fa fa-check" aria-hidden="true" style="margin-left:5px"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-12" style="height:280px; overflow-x: hidden; overflow-y: auto;">
+                        <table class=" table-stripd table-bordered sequential-control ">
+                            <tr class="tr-top rwsp" style="height:5px;background-color:white; ">
+                                <th class="Hdstyl">SL.No <div class="col-sm-1 " style="float:right"></div></th>
+                                <th class="Hdstyl">AssetID </th>
+                                <th class="Hdstyl">Unique ID</th>
+                                <th class="Hdstyl">Asset Name</th>
+                                <th class="Hdstyl">Asset Type</th>
+                                <th class="Hdstyl">Ownership</th>
+                                <th class="Hdstyl">Dept </th>
+                                <th class="Hdstyl">Location</th>
+                                <th class="Hdstyl">Employee</th>
+                                <th class="Hdstyl">Customer</th>
+                                <th class="Hdstyl">Supplier</th>
+                                <th class="Hdstyl">Purch Date</th>
+                                <th class="Hdstyl">purch Value</th>
+                                <th class="Hdstyl">Book Value</th>
+                                <th class="Hdstyl">Transfer</th>
+                            </tr>
+                            <tr ng-repeat="asset in detailsList" style="height:5px;">
+                                <td class="tstyle">
+                                    <input type="text" class="numeric-aling" value="{{$index + 1}}" style="width: 100%;">
+                                </td>
+                                <td class="tstyle" style="width: 120px;">
+
+                                    <input type="text" name="" ng-model="asset.Ast_ID" style="width:100%">
+
+                                </td>
+                                <td class="tstyle" style="width: 120px;">
+
+                                    <input type="text" name="" ng-model="asset.Ast_Uniq_Id" style="width:100%">
+
+                                </td>
+                                <td class="tstyle" style="width: 120px;">
+
+                                    <input type="text" name="" ng-model="asset.Ast_Name" style="width:100%">
+
+                                </td>
+                                <td class="tstyle" style="width: 120px;">
+
+                                    <input type="text" name="" ng-model="asset.Atp_Name" style="width:100%">
+                                </td>
+
+                                <td class="tstyle">
+
+                                    <input type="text" name="" ng-model="asset.Ows_Name" style="width:100%">
+
+                                </td>
+                                <td class="tstyle" style="width: 120px;">
+                                    <input type="text" name="" ng-model="asset.Dept_Name" style="width:100%">
+                                </td>
+
+                                <td class="tstyle" style="width: 120px;">
+
+                                    <input type="text" name="" ng-model="asset.Loc_Name" style="width:100%">
+
+                                </td>
+                                <td class="tstyle" style="width: 120px;">
+
+                                    <input type="text" name="" ng-model="asset.Emp_Name " style="width:100%">
+
+
+                                </td>
+                                <td class="tstyle" style="width: 120px;">
+
+                                    <input type="text" name="" ng-model="asset.Cus_Name" style="width:100%">
+
+                                </td>
+                                <td class="tstyle" style="width: 120px;">
+
+                                    <input type="text" name="" ng-model="asset.Sup_Name" style="width:100%">
+                                </td>
+
+                                <td class="tstyle" style="width: 120px;">
+
+                                    <input type="text" name=""  ng-model="asset.Purch_Date"  style="width:100%">
+
+                                </td>
+                                <td class="tstyle" style="width: 120px;">
+                                    <input type="text" name="" ng-model="asset.Ast_Purch_Value" style="width:100%">
+                                </td>
+
+                                <td class="tstyle" style="width: 120px;">
+
+                                    <input type="text" name="   " ng-model="asset.Ast_Book_Value" style="width:100%">
+
+                                </td>
+
+                                <td class="tstyle" style="width: 120px;">
+
+                                    <button type="button" class="btn btn-success" ng-click="assetTransfer(asset.Ast_ID,asset.Ast_Name)">AssetTransfer</button>
+
+                                </td>
+
+                            </tr>
+                            <tr></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--</form>-->
+        </div>
+    </form>
+</div>

@@ -1,0 +1,51 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading" ng-show="Mode!=='edit'">
+        Add Department
+    </div>
+    <div class="panel-heading" ng-show="Mode==='edit'">
+        Edit Department : {{EditedDept.Dept_Name}}
+    </div>
+    <div class="panel-body">
+        <form role="form" class=" form-horizontal sleek-forms" novalidate name="departmentForm">
+            <div class="">
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        <div class=" selectContainer" ng-class="{ 'has-error' : departmentForm.Dept_Cd.$invalid && (departmentForm.Dept_Cd.$dirty || submitted)}">
+                            <label class="control-label  control-label col-sm-4 text-str"  for=" dept_cd">Department Code</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" ng-model="EditedDept.Dept_Cd" name="Dept_Cd" placeholder="Department code" uppercase-only
+                                       ng-required="true" ng-disabled="Mode=='edit'" limit-to="5">
+                                </div>
+                            <div class="col-sm-1 mandetary "></div>
+                                <div ng-show="departmentForm.Dept_Cd.$error.required && (departmentForm.Dept_Cd.$dirty || submitted)" class="help-block">Department Code is required.</div>
+                            </div>
+
+                    </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-lg-12">
+                            <div class="" ng-class="{ 'has-error' : departmentForm.Dept_Name.$invalid && (departmentForm.Dept_Name.$dirty || submitted)}">
+                                <label class="control-label control-label  control-label col-sm-4 text-str" for="Dept_Name">Name</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" ng-model="EditedDept.Dept_Name" name="Dept_Name" placeholder="Department name"
+                                           ng-required="true" uppercase-only>
+                                </div>
+                                <div class="col-sm-1 mandetary "></div>
+                                <div ng-show="departmentForm.Dept_Name.$error.required && (departmentForm.Dept_Name.$dirty || submitted)" class="help-block">Department Name is required.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           
+        </form>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            <button type="button" class="btn btn-danger" ng-click="cancelEdit()">Cancel</button>
+            <button type="button" class="btn btn-primary" ng-click="addDepartment()" ng-show="Mode!=='edit'" ng-disabled="departmentForm.$invalid">Add</button>
+            <button type="button" class="btn btn-primary" ng-click="updateDepartment()" ng-show="Mode==='edit'" ng-disabled="departmentForm.$invalid">Update</button>
+        </div>
+    </div>
+</div>

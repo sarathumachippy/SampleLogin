@@ -1,0 +1,57 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Edit {{EditedAssetType.Atp_Name}}
+    </div>
+    <div class="panel-body">
+        <form role="form" novalidate angular-validator name="EditUserForm" angular-validator-submit="Register()">
+            <div class="">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label class="control-label" for="fullName">Asset Code</label>
+                            <input type="text" class="form-control" ng-model="EditedAsset.Atp_Cd" name="assetId" id="assetCd" placeholder="Asset Code"
+                                   validate-on="blur" required required-message="'Asset code is required'">
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label class="control-label" for="assetName">Asset Type Name</label>
+                            <input type="text" class="form-control" ng-model="EditedAsset.Atp_Name" name="assetName" id="assetName" placeholder="Asset Name"
+                                   validate-on="blur" required required-message="'Asset name is required'">
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label class="control-label" for="assetName">Asset Type Name</label>
+                            <input type="text" class="form-control" ng-model="EditedAsset.Atp_Name" name="assetName" id="assetName" placeholder="Asset Name"
+                                   validate-on="blur" required required-message="'Asset name is required'">
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 selectContainer">
+
+                            <label class="control-label" for="assetName">Asset Type Name</label>
+                            <input type="text" class="form-control" ng-model="EditedAsset.Atp_Name" name="assetName" id="assetName" placeholder="Asset Name"
+                                   validate-on="blur" required required-message="'Asset name is required'">
+                        </div>
+
+                        <div class="col-xs-6 selectContainer">
+
+                            <label class="control-label" for="assetName">Asset Type Name</label>
+                            <input type="text" class="form-control" ng-model="EditedAsset.Atp_Name" name="assetName" id="assetName" placeholder="Asset Name"
+                                   validate-on="blur" required required-message="'Asset name is required'">
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            <button type="button" class="btn btn-danger" ng-click="cancelEdit()">Cancel</button>
+            <button type="button" class="btn btn-primary" ng-click="updateAssetType()">Update</button>
+        </div>
+    </div>
+</div>

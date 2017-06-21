@@ -1,0 +1,12 @@
+D:\Projects\QDESOnlineAsset.Web\QDESOnlineAsset.Web\bin\QDESOnlineAsset.Web.dll.config
+D:\Projects\QDESOnlineAsset.Web\QDESOnlineAsset.Web\bin\QDESOnlineAsset.Web.dll
+D:\Projects\QDESOnlineAsset.Web\QDESOnlineAsset.Web\bin\QDESOnlineAsset.Web.pdb
+D:\Projects\QDESOnlineAsset.Web\QDESOnlineAsset.Web\obj\Debug\QDESOnlineAsset.Web.dll
+D:\Projects\QDESOnlineAsset.Web\QDESOnlineAsset.Web\obj\Debug\QDESOnlineAsset.Web.pdb
+D:\Projects\QDESOnlineAsset.Web\QDESOnlineAsset.Web\obj\Debug\QDESOnlineAsset.Web.csprojResolveAssemblyReference.cache
+E:\_Work\AFI\_OnlineAsset\QDESOnlineAsset.Web\QDESOnlineAsset.Web\bin\QDESOnlineAsset.Web.dll.config
+E:\_Work\AFI\_OnlineAsset\QDESOnlineAsset.Web\QDESOnlineAsset.Web\bin\QDESOnlineAsset.Web.dll
+E:\_Work\AFI\_OnlineAsset\QDESOnlineAsset.Web\QDESOnlineAsset.Web\bin\QDESOnlineAsset.Web.pdb
+E:\_Work\AFI\_OnlineAsset\QDESOnlineAsset.Web\QDESOnlineAsset.Web\obj\Debug\QDESOnlineAsset.Web.csprojResolveAssemblyReference.cache
+E:\_Work\AFI\_OnlineAsset\QDESOnlineAsset.Web\QDESOnlineAsset.Web\obj\Debug\QDESOnlineAsset.Web.dll
+E:\_Work\AFI\_OnlineAsset\QDESOnlineAsset.Web\QDESOnlineAsset.Web\obj\Debug\QDESOnlineAsset.Web.pdb

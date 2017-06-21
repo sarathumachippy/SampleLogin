@@ -1,0 +1,53 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Edit user : {{EditedMenu.MenuName}}
+    </div>
+    <div class="panel-body">
+        <form role="form" class="form-horizontal sleek-forms" novalidate angular-validator name="EditMenuForm">
+            <div class="form-group">
+                <label class="form-label control-label   col-sm-3 text-str" for="MenuName">Menu Caption</label>
+                <div class=" col-sm-8">
+                    <input type="text" class="form-control" ng-model="EditedMenu.MenuName"
+                           name="MenuName" placeholder="Menu Caption"
+                           validate-on="blur" required required-message="'Menu Caption is required'">
+                </div>
+                </div>
+            <div class="form-group">
+                <label class="form-label control-label   col-sm-3 text-str"  for=" parentmenu">Parent Menu</label>
+                <div class=" col-sm-8">
+                    <select name="ParentName" class="form-control" ng-model="ParentName">
+                        <option value=""></option>
+                        <option on-finish-render="reAssignValue()" ng-repeat="menu in parentMenuList" value="{{menu.MenuName}}">{{menu.MenuName}}</option>
+
+                    </select>
+                    </div>
+                </div>
+            <div class="form-group">
+                <label class="form-label control-label   col-sm-3 text-str" for="URL">URL Path</label>
+                <div class=" col-sm-8">
+                    <input type="text" class="form-control" ng-model="EditedMenu.URL"
+                           name="URL" placeholder="URL Path"
+                           validate-on="blur" required required-message="'Menu Caption is required'">
+                </div>
+                </div>
+            <div class="form-group">
+                <label class="form-label control-label   col-sm-3 text-str" for="cssClass">Css Class</label>
+                <div class=" col-sm-8">
+                    <input type="text" class="form-control" ng-model="EditedMenu.CssClass"
+                           name="cssClass" placeholder="Css Class"
+                           validate-on="blur">
+                </div>
+                </div>
+        </form>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            <button type="button" class="btn btn-danger" ng-click="cancelEdit()" style="margin-right:5px;">Cancel</button>
+            <div class="pull-right">
+                <button type="button" class="btn btn-primary" ng-click="createMenu()" ng-hide="EditedMenu.ID!=undefined" ng-disabled="userRegForm.$invalid">Create</button>
+                <button type="button" class="btn btn-primary" ng-click="updateMenu()" ng-show="EditedMenu.ID!=undefined" ng-disabled="userRegForm.$invalid">Update</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading" ng-show="Mode!=='edit'" >
+        Add Employee
+    </div>
+    <div class="panel-heading" ng-show="Mode==='edit'">
+        Edit Emplyee : {{EditedEmp.Emp_Name}}
+    </div>
+    <div class="panel-body">
+        <form role="form" novalidate name="employeeForm">
+            <div class="">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-6 selectContainer" ng-class="{ 'has-error' : EditedEmp.Emp_Cd.$invalid && (employeeForm.Emp_Cd.$dirty || submitted)}">
+                            <label class="control-label" for="Emp_Cd">Employee Code</label>
+                            <input type="text" class="form-control" ng-model="EditedEmp.Emp_Cd" name="Emp_Cd" placeholder="Employee code" uppercase-only
+                                   ng-required="true" ng-disabled="Mode=='edit'" limit-to="5">
+                            <div ng-show="employeeForm.Emp_Cd.$error.required && (employeeForm.Emp_Cd.$dirty || submitted)" class="help-block">Employee Code is required.</div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6" ng-class="{ 'has-error' : employeeForm.Emp_Name.$invalid && (employeeForm.Emp_Name.$dirty || submitted)}">
+                            <label class="control-label" for="Emp_Name">Name</label>
+                            <input type="text" class="form-control" ng-model="EditedEmp.Emp_Name" name="Emp_Name" placeholder="Employee name"
+                                   ng-required="true" uppercase-only>
+                            <div ng-show="employeeForm.Emp_Name.$error.required && (employeeForm.Emp_Name.$dirty || submitted)" class="help-block">Emplyee Name is required.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            <button type="button" class="btn btn-danger" ng-click="cancelEdit()">Cancel</button>
+            <button type="button" class="btn btn-primary" ng-click="addEmployee()" ng-show="Mode!=='edit'" ng-disabled="employeeForm.$invalid">Add</button>
+            <button type="button" class="btn btn-primary" ng-click="updateEmployee()" ng-show="Mode==='edit'" ng-disabled="employeeForm.$invalid">Update</button>
+        </div>
+    </div>
+</div>
